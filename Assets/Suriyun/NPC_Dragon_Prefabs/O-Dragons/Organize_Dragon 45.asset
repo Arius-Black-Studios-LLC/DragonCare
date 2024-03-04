@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80e75c9ad1c5e844885f19fa4c62579c, type: 3}
+  m_Name: Organize_Dragon 45
+  m_EditorClassIdentifier: 
+  DragonID: 1045
+  DragonName: Lolly
+  DragonObject: {fileID: 2836030962984666829, guid: f2041fd9e2f30b84eb8881fea30d1880,
+    type: 3}
+  DragonCategory: {fileID: 11400000, guid: 28bde3a3b73c59745a010741b7ba7220, type: 2}
