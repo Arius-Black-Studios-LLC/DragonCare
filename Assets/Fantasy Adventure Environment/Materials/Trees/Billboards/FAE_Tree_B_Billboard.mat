@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: FAE_Tree_B_Billboard
-  m_Shader: {fileID: -6465566751694194690, guid: 7e07cc6c21cf51b4387f5678a0a21398,
+  m_Shader: {fileID: -6465566751694194690, guid: 55d33328ab3ba4efca3c7706d97d8ee8,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -32,6 +32,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Atlas:
+        m_Texture: {fileID: 2800000, guid: 4b40faebd223ad8439d588c1c146f3e8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseMap:
         m_Texture: {fileID: 2800000, guid: 4b40faebd223ad8439d588c1c146f3e8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -137,7 +141,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - Space_0: 0
+    - Space_1: 0
+    - Space_2: 0
+    - Space_3: 0
     - _AO: 0
+    - _AlphaClipThreshold: 0.5
     - _Alphacutoff: 0.415
     - _AmbientOcclusion: 0.556
     - _BendingInfluence: 0
@@ -155,12 +164,20 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _GradientBrightness: 0.8
+    - _GustEnabled: 1
+    - _GustFrequency: 0.2
+    - _GustIntensity: 0.2
+    - _GustSpeed: 0.2
     - _Height: 0
     - _MaskClipValue: 0.5
     - _Metallic: 0
     - _Mode: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _PatchesBluriness: 0.2
+    - _PatchesEnabled: 1
+    - _PatchesScale: 0.5
+    - _PatchesThreshold: 0.5
     - _PigmentMapSize: 1024
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -188,6 +205,11 @@ Material:
     - _UVSec: 0
     - _Uselightcolor: 1
     - _WindAmplitudeMultiplier: 3
+    - _WindDirection: 0
+    - _WindEnabled: 1
+    - _WindFrequency: 1
+    - _WindIntensity: 1
+    - _WindNoise: 1
     - _WindQuality: 5
     - _WindSpeed: 0.5
     - _WindWeight: 0.448
@@ -196,9 +218,15 @@ Material:
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
+    - Color_fa7bfd953c0f468faf964c3a5545c86d: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 0, g: 1, b: 0, a: 1}
+    - _ColorBottom: {r: 0.16078427, g: 0.16078427, b: 0.16078427, a: 1}
+    - _ColorTop: {r: 0.42986825, g: 0.8679245, b: 0.57283425, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _GustColor: {r: 0.9450981, g: 0.8274511, b: 0.7803922, a: 1}
     - _HueVariation: {r: 1, g: 0.80689657, b: 0, a: 0.366}
+    - _PatchesColor: {r: 0.5848976, g: 0.9433962, b: 0.5740477, a: 1}
+    - _PatchesOffset: {r: 0, g: 0, b: 0, a: 0}
     - _SSSColor: {r: 0.9368154, g: 1, b: 0.3455882, a: 1}
     - _SpecColor: {r: 0, g: 0, b: 0, a: 0}
     - _TranslucencyColor: {r: 0.73, g: 0.85, b: 0.41, a: 1}

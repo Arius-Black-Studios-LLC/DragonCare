@@ -26,21 +26,24 @@ public class NPCDragonSpawner : MonoBehaviour
 
     public void SpawnNPCDragons()
     {
-        foreach(int id in PlayerManager.instance.playerData.unlockedDragonIDs)
+        foreach(DragonSaveSettings dragon in PlayerManager.instance.playerData.unlockedDragons)
         {
-            PlayerManager.instance.SpawnDragonWithBrain(id,NPC_Brain);
+
+                PlayerManager.instance.SpawnDragonWithBrain(dragon, NPC_Brain);
+            
 
         }
         dragonIndex = Random.Range(0, PlayerManager.instance.dragonsInScene.Count - 1);
         GameObject lookFollow = PlayerManager.instance.dragonsInScene[dragonIndex];
+        PlayerManager.instance.dragonInFocus = lookFollow.GetComponent<DragonNPCManager>();
         ShowDragonName();
         cam.Follow = lookFollow.transform;
         cam.LookAt = lookFollow.transform;
     }
 
-    public void SpawnNewUnLockedNPCDragon(int id)
+    public void SpawnNewUnLockedNPCDragon(DragonSaveSettings newDragon)
     {
-        PlayerManager.instance.SpawnDragonWithBrain(id, NPC_Brain);
+        PlayerManager.instance.SpawnDragonWithBrain(newDragon, NPC_Brain);
     }
 
     public void LookAtNextDragon()
@@ -51,6 +54,7 @@ public class NPCDragonSpawner : MonoBehaviour
             dragonIndex = 0;
         }
         GameObject lookFollow = PlayerManager.instance.dragonsInScene[dragonIndex];
+        PlayerManager.instance.dragonInFocus = lookFollow.GetComponent<DragonNPCManager>();
         cam.Follow = lookFollow.transform;
         cam.LookAt = lookFollow.transform;
         ShowDragonName();
@@ -63,12 +67,13 @@ public class NPCDragonSpawner : MonoBehaviour
             dragonIndex = PlayerManager.instance.dragonsInScene.Count-1;
         }
         GameObject lookFollow = PlayerManager.instance.dragonsInScene[dragonIndex];
+        PlayerManager.instance.dragonInFocus = lookFollow.GetComponent<DragonNPCManager>();
         cam.Follow = lookFollow.transform;
         cam.LookAt = lookFollow.transform;
         ShowDragonName();
     }
     public void ShowDragonName()
     {
-        dragonName.text = DragonDatabase.instance.getDragonNameByID(PlayerManager.instance.dragonsInScene[dragonIndex].GetComponent<DragonNPCManager>().dragonID);
+        dragonName.text = DragonDatabase.instance.getDragonByID(PlayerManager.instance.dragonsInScene[dragonIndex].GetComponent<DragonNPCManager>().dragonID).DragonName;
     }
 }

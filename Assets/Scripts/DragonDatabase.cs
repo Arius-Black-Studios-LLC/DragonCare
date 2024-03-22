@@ -8,6 +8,8 @@ public class DragonDatabase : MonoBehaviour
     public static DragonDatabase instance;
     public DragonNPCScriptable[] dragons;
 
+    public DragonAccesory[] accesories;
+
     private void Awake()
     {
         if (instance == null)
@@ -33,29 +35,35 @@ public class DragonDatabase : MonoBehaviour
         return null;
     }
 
-    public GameObject getDragonPrefabByID(int dragonID)
+    public DragonNPCScriptable getDragonByID(int id)
     {
         foreach (var dragon in dragons)
         {
-            if (dragonID == dragon.DragonID)
+            if (id == dragon.DragonID)
             {
-                return dragon.DragonObject;
+                return dragon;
             }
         }
 
         return null;
     }
 
-    public DRAGONCategory getDragonCategoryByID(int dragonID)
+
+
+
+
+    public DragonAccesory getAccesoryByID(int accesoryID)
     {
-        foreach (var dragon in dragons)
+        Debug.Log("Hat ID" + accesoryID);
+        foreach (var accesory in accesories)
         {
-            if (dragonID == dragon.DragonID)
+            if (accesoryID == accesory.accesory_id)
             {
-                return dragon.DragonCategory;
+                Debug.Log("Hat found!");
+                return accesory;
             }
         }
-
+        Debug.Log("Hat NOT found!");
         return null;
     }
 

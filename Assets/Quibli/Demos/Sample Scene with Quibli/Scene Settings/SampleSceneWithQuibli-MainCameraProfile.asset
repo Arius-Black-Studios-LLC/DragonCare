@@ -30,13 +30,13 @@ MonoBehaviour:
     m_Value: 0
   focusDistance:
     m_OverrideState: 1
-    m_Value: 1.33
+    m_Value: 6.5
   aperture:
     m_OverrideState: 1
     m_Value: 5.5
   focalLength:
     m_OverrideState: 1
-    m_Value: 27
+    m_Value: 27.9
   bladeCount:
     m_OverrideState: 0
     m_Value: 5
@@ -95,10 +95,10 @@ MonoBehaviour:
   active: 1
   type:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 9
   intensity:
     m_OverrideState: 1
-    m_Value: 0.2
+    m_Value: 0.49
   response:
     m_OverrideState: 1
     m_Value: 1
@@ -179,19 +179,19 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 2.53
   blur:
     m_OverrideState: 1
-    m_Value: 0.72
+    m_Value: 0.87
   edgePreserve:
     m_OverrideState: 1
-    m_Value: 0.25
+    m_Value: 0.29
   rangeStart:
     m_OverrideState: 1
     m_Value: 0
   rangeEnd:
     m_OverrideState: 1
-    m_Value: 100
+    m_Value: 112.8
 --- !u!114 &7482052500729543118
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -205,6 +205,9 @@ MonoBehaviour:
   m_Name: Bloom
   m_EditorClassIdentifier: 
   active: 1
+  skipIterations:
+    m_OverrideState: 0
+    m_Value: 1
   threshold:
     m_OverrideState: 1
     m_Value: 0.9
@@ -213,7 +216,7 @@ MonoBehaviour:
     m_Value: 0.44
   scatter:
     m_OverrideState: 0
-    m_Value: 0.7
+    m_Value: 0.684
   clamp:
     m_OverrideState: 0
     m_Value: 65472
@@ -223,12 +226,16 @@ MonoBehaviour:
   highQualityFiltering:
     m_OverrideState: 0
     m_Value: 0
-  skipIterations:
+  downscale:
     m_OverrideState: 0
-    m_Value: 1
+    m_Value: 0
+  maxIterations:
+    m_OverrideState: 0
+    m_Value: 6
   dirtTexture:
     m_OverrideState: 0
     m_Value: {fileID: 0}
+    dimension: 1
   dirtIntensity:
     m_OverrideState: 0
     m_Value: 0

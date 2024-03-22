@@ -12,4 +12,8 @@ public class DragonNPCScriptable : ScriptableObject
     public string DragonName;
     public GameObject DragonObject;
     public DRAGONCategory DragonCategory;
+
+    public int Hat_id = -1;
+    public int jacket_id = -1;
+    public int pet_id = -1;
 }

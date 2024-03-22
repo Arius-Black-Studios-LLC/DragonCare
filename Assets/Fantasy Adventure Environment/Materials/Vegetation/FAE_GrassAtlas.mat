@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: FAE_GrassAtlas
-  m_Shader: {fileID: -6465566751694194690, guid: dc1a634184354e343a9a36dd032cf2bf,
+  m_Shader: {fileID: -6465566751694194690, guid: 55d33328ab3ba4efca3c7706d97d8ee8,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -42,6 +42,10 @@ Material:
     m_TexEnvs:
     - PigmentMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 525ae300fbe8eef4a8261dbc5a6df69c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -152,9 +156,14 @@ Material:
     m_Floats:
     - BendingRadius: 0
     - BendingStrength: 0
+    - Space_0: 0
+    - Space_1: 0
+    - Space_2: 0
+    - Space_3: 0
     - WindSpeed: 0.3
     - _AO: 0
     - _ASEOutlineWidth: 0
+    - _AlphaClipThreshold: 0.543
     - _AmbientOcclusion: 0.15
     - _BendingInfluence: 1
     - _BendingRadius: 1.5
@@ -180,6 +189,10 @@ Material:
     - _GlobalWindMotion: 1
     - _Globaltiling: 1.56
     - _Glossiness: 0.5
+    - _GustEnabled: 1
+    - _GustFrequency: 0.2
+    - _GustIntensity: 0.2
+    - _GustSpeed: 0.2
     - _Height: 0
     - _HeightmapInfluence: 0
     - _LeafFlutter: 0.5
@@ -192,6 +205,10 @@ Material:
     - _Mode: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _PatchesBluriness: 0.435
+    - _PatchesEnabled: 1
+    - _PatchesScale: 0.45
+    - _PatchesThreshold: 0.621
     - _PigmentMapBrightness: 1
     - _PigmentMapHeight: 0.834
     - _PigmentMapInfluence: 1
@@ -201,6 +218,7 @@ Material:
     - _Roughness: 0.5
     - _SSSAmount: 0.46
     - _SSSSize: 3
+    - _ShadowStrength: 1
     - _SrcBlend: 1
     - _SubsurfaceAmount: 2
     - _Subsurfacesize: 2.8
@@ -216,7 +234,12 @@ Material:
     - _VS_TOUCHBEND: 1
     - _VS_TOUCHBEND1: 0
     - _WindAmplitudeMultiplier: 1
+    - _WindDirection: 0
+    - _WindEnabled: 1
+    - _WindFrequency: 1
     - _WindGusting: 1
+    - _WindIntensity: 1
+    - _WindNoise: 1
     - _WindSpeed: 0.116
     - _WindStiffness: 1
     - _WindSwinging: 0.394
@@ -227,6 +250,7 @@ Material:
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
+    - Color_fa7bfd953c0f468faf964c3a5545c86d: {r: 0, g: 0, b: 0, a: 0}
     - ObstaclePosition: {r: 0, g: 0, b: 0, a: 0}
     - WindDirection: {r: 0, g: 0, b: 1, a: 0}
     - _ASEOutlineColor: {r: 0, g: 0, b: 0, a: 0}
@@ -236,8 +260,11 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FlatColor: {r: 1, g: 0, b: 0, a: 0}
     - _GlobalColor: {r: 0, g: 0, b: 0, a: 0}
+    - _GustColor: {r: 0.9450981, g: 0.8274511, b: 0.7803922, a: 1}
     - _ObjectColor: {r: 1, g: 1, b: 1, a: 0}
     - _ObstaclePosition: {r: -118.41, g: 0.365, b: -132.43, a: 0}
+    - _PatchesColor: {r: 0.2632762, g: 0.41509432, b: 0.22516909, a: 1}
+    - _PatchesOffset: {r: 0, g: 0, b: 0, a: 0}
     - _SSSColor: {r: 1, g: 0.76551723, b: 0, a: 1}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
     - _SubsurfaceColor: {r: 0.654902, g: 1, b: 0, a: 0}

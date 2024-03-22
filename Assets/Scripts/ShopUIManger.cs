@@ -54,10 +54,10 @@ public class ShopUIManger : MonoBehaviour
 
     public void BuyD_Egg()
     {
-        DragonNPCScriptable[] sublistOfDRagons = DragonDatabase.instance.dragons.Where(dragon => DragonDatabase.instance.getDragonCategoryByID(dragon.DragonID) == D_cat).ToArray();
+        DragonNPCScriptable[] sublistOfDRagons = DragonDatabase.instance.dragons.Where(dragon => DragonDatabase.instance.getDragonByID(dragon.DragonID).DragonCategory == D_cat).ToArray();
         int dragonID = sublistOfDRagons[UnityEngine.Random.Range(0, sublistOfDRagons.Length)].DragonID;
         PlayerManager.instance.AddDragon(dragonID);
-        NPCDragonSpawner.instance.SpawnNewUnLockedNPCDragon(dragonID);
+
         PlayerManager.instance.playerData.productivityPoints -= 100;
         PlayerManager.instance.playerData.D_tasks -= PlayerManager.instance.playerData.EggPricePerCat;
         PlayerManager.instance.IncreaseEggPricePerCat();
@@ -68,10 +68,9 @@ public class ShopUIManger : MonoBehaviour
     }
     public void BuyR_Egg()
     {
-        DragonNPCScriptable[] sublistOfDRagons = DragonDatabase.instance.dragons.Where(dragon => DragonDatabase.instance.getDragonCategoryByID(dragon.DragonID) == R_cat).ToArray();
+        DragonNPCScriptable[] sublistOfDRagons = DragonDatabase.instance.dragons.Where(dragon => DragonDatabase.instance.getDragonByID(dragon.DragonID).DragonCategory == R_cat).ToArray();
         int dragonID = sublistOfDRagons[UnityEngine.Random.Range(0, sublistOfDRagons.Length)].DragonID;
         PlayerManager.instance.AddDragon(dragonID);
-        NPCDragonSpawner.instance.SpawnNewUnLockedNPCDragon(dragonID);
         PlayerManager.instance.playerData.productivityPoints -= 100;
         PlayerManager.instance.playerData.R_tasks -= PlayerManager.instance.playerData.EggPricePerCat;
         PlayerManager.instance.SaveCurencies();
@@ -82,10 +81,9 @@ public class ShopUIManger : MonoBehaviour
 
     public void BuyA_Egg()
     {
-        DragonNPCScriptable[] sublistOfDRagons = DragonDatabase.instance.dragons.Where(dragon => DragonDatabase.instance.getDragonCategoryByID(dragon.DragonID) == A_cat).ToArray();
+        DragonNPCScriptable[] sublistOfDRagons = DragonDatabase.instance.dragons.Where(dragon => DragonDatabase.instance.getDragonByID(dragon.DragonID).DragonCategory == A_cat).ToArray();
         int dragonID = sublistOfDRagons[UnityEngine.Random.Range(0, sublistOfDRagons.Length)].DragonID;
         PlayerManager.instance.AddDragon(dragonID);
-        NPCDragonSpawner.instance.SpawnNewUnLockedNPCDragon(dragonID);
         PlayerManager.instance.playerData.productivityPoints -= 100;
         PlayerManager.instance.playerData.A_tasks -= PlayerManager.instance.playerData.EggPricePerCat;
         PlayerManager.instance.SaveCurencies();
@@ -96,10 +94,9 @@ public class ShopUIManger : MonoBehaviour
 
     public void BuyG_Egg()
     {
-        DragonNPCScriptable[] sublistOfDRagons = DragonDatabase.instance.dragons.Where(dragon => DragonDatabase.instance.getDragonCategoryByID(dragon.DragonID) == G_cat).ToArray();
+        DragonNPCScriptable[] sublistOfDRagons = DragonDatabase.instance.dragons.Where(dragon => DragonDatabase.instance.getDragonByID(dragon.DragonID).DragonCategory == G_cat).ToArray();
         int dragonID = sublistOfDRagons[UnityEngine.Random.Range(0, sublistOfDRagons.Length)].DragonID;
         PlayerManager.instance.AddDragon(dragonID);
-        NPCDragonSpawner.instance.SpawnNewUnLockedNPCDragon(dragonID);
         PlayerManager.instance.playerData.productivityPoints -= 100;
         PlayerManager.instance.playerData.G_tasks -= PlayerManager.instance.playerData.EggPricePerCat;
         PlayerManager.instance.SaveCurencies();
@@ -110,10 +107,9 @@ public class ShopUIManger : MonoBehaviour
 
     public void BuyO_Egg()
     {
-        DragonNPCScriptable[] sublistOfDRagons = DragonDatabase.instance.dragons.Where(dragon => DragonDatabase.instance.getDragonCategoryByID(dragon.DragonID) == O_cat).ToArray();
+        DragonNPCScriptable[] sublistOfDRagons = DragonDatabase.instance.dragons.Where(dragon => DragonDatabase.instance.getDragonByID(dragon.DragonID).DragonCategory == O_cat).ToArray();
         int dragonID = sublistOfDRagons[UnityEngine.Random.Range(0, sublistOfDRagons.Length)].DragonID;
         PlayerManager.instance.AddDragon(dragonID);
-        NPCDragonSpawner.instance.SpawnNewUnLockedNPCDragon(dragonID);
         PlayerManager.instance.playerData.productivityPoints -= 100;
         PlayerManager.instance.playerData.O_tasks -= PlayerManager.instance.playerData.EggPricePerCat;
         PlayerManager.instance.SaveCurencies();
@@ -124,10 +120,9 @@ public class ShopUIManger : MonoBehaviour
 
     public void BuyN_Egg()
     {
-        DragonNPCScriptable[] sublistOfNRagons = DragonDatabase.instance.dragons.Where(dragon => DragonDatabase.instance.getDragonCategoryByID(dragon.DragonID) == N_cat).ToArray();
+        DragonNPCScriptable[] sublistOfNRagons = DragonDatabase.instance.dragons.Where(dragon => DragonDatabase.instance.getDragonByID(dragon.DragonID).DragonCategory == N_cat).ToArray();
         int dragonID = sublistOfNRagons[UnityEngine.Random.Range(0, sublistOfNRagons.Length)].DragonID;
         PlayerManager.instance.AddDragon(dragonID);
-        NPCDragonSpawner.instance.SpawnNewUnLockedNPCDragon(dragonID);
         PlayerManager.instance.playerData.productivityPoints -= 100;
         PlayerManager.instance.playerData.N_tasks -= PlayerManager.instance.playerData.EggPricePerCat;
         PlayerManager.instance.SaveCurencies();
@@ -138,10 +133,9 @@ public class ShopUIManger : MonoBehaviour
 
     public void BuyS_Egg()
     {
-        DragonNPCScriptable[] sublistOfDRagons = DragonDatabase.instance.dragons.Where(dragon => DragonDatabase.instance.getDragonCategoryByID(dragon.DragonID) == S_cat).ToArray();
+        DragonNPCScriptable[] sublistOfDRagons = DragonDatabase.instance.dragons.Where(dragon => DragonDatabase.instance.getDragonByID(dragon.DragonID).DragonCategory == S_cat).ToArray();
         int dragonID = sublistOfDRagons[UnityEngine.Random.Range(0, sublistOfDRagons.Length)].DragonID;
         PlayerManager.instance.AddDragon(dragonID);
-        NPCDragonSpawner.instance.SpawnNewUnLockedNPCDragon(dragonID);
         PlayerManager.instance.playerData.productivityPoints -= 100;
         PlayerManager.instance.playerData.S_tasks -= PlayerManager.instance.playerData.EggPricePerCat;
         PlayerManager.instance.SaveCurencies();

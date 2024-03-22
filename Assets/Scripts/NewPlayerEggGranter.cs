@@ -7,8 +7,8 @@ public class NewPlayerEggGranter : MonoBehaviour
     private bool isFirstTimePlaying;
     private void Start()
     {
-        Debug.Log("Dragons unlocked :" + PlayerManager.instance.playerData.unlockedDragonIDs.Count);
-        isFirstTimePlaying = PlayerManager.instance.playerData.unlockedDragonIDs.Count <= 0;
+        Debug.Log("Dragons unlocked :" + PlayerManager.instance.playerData.unlockedDragons.Count);
+        isFirstTimePlaying = PlayerManager.instance.playerData.unlockedDragons.Count <= 0;
 
         if (!isFirstTimePlaying)
         {
@@ -19,10 +19,8 @@ public class NewPlayerEggGranter : MonoBehaviour
 
     public void GiveDragonToPlayer()
     {
-        int dragonID = DragonDatabase.instance.dragons[UnityEngine.Random.Range(0, DragonDatabase.instance.dragons.Length)].DragonID;
-        PlayerManager.instance.AddDragon(dragonID);
-        NPCDragonSpawner.instance.SpawnNPCDragons();
-
+        int newDragon = DragonDatabase.instance.dragons[UnityEngine.Random.Range(0, DragonDatabase.instance.dragons.Length)].DragonID;
+        PlayerManager.instance.AddDragon(newDragon);
         gameObject.SetActive(false);
     }
 }

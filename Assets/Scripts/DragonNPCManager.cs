@@ -14,6 +14,7 @@ public class DragonNPCManager : MonoBehaviour
     public int dragonID;
 
     public DragonAnimManager animManager;
+    public DragonWardorbManager wardorbManager;
 
     public float stateTimer;
     public float counter;

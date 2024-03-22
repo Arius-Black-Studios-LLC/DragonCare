@@ -9,7 +9,12 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: T_Dragon_00
   m_Shader: {fileID: 4800000, guid: 2a230514c860643f69b6a4d1871d3825, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - DR_OUTLINE_ON
+  - DR_RIM_ON
+  - DR_SPECULAR_ON
   - _DETAILMAPBLENDINGMODE_MULTIPLY
   - _RECEIVE_SHADOWS_OFF
   - _TEXTUREBLENDINGMODE_MULTIPLY
@@ -22,8 +27,8 @@ Material:
   stringTagMap:
     IgnoreProjection: False
     RenderType: Opaque
-  disabledShaderPasses:
-  - SRPDEFAULTUNLIT
+  disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -303,7 +308,7 @@ Material:
     - _BlurLevelSGM: 0
     - _BumpScale: 1
     - _BumpScaleMatcap: 1
-    - _CameraDistanceImpact: 0.5
+    - _CameraDistanceImpact: 0.082
     - _CameraRolling_Stabilizer: 0
     - _ClippingMatteMode: 0
     - _ClippingMode: 0
@@ -358,11 +363,11 @@ Material:
     - _Farthest_Distance: 100
     - _FirstShadeOverridden: 0
     - _FirstShadeVisible: 1
-    - _FlatRimEdgeSmoothness: 0.5
-    - _FlatRimLightAlign: 0
-    - _FlatRimSize: 0.5
+    - _FlatRimEdgeSmoothness: 0
+    - _FlatRimLightAlign: 0.066
+    - _FlatRimSize: 0.183
     - _FlatSpecularEdgeSmoothness: 0
-    - _FlatSpecularSize: 0.1
+    - _FlatSpecularSize: 0.809
     - _GI_Intensity: 0
     - _GlossMapScale: 1
     - _Glossiness: 0
@@ -439,8 +444,8 @@ Material:
     - _Offset_X_Axis_BLD: -0.05
     - _Offset_Y_Axis_BLD: 0.09
     - _Offset_Z: 0
-    - _OutlineDepthOffset: 0
-    - _OutlineEnabled: 0
+    - _OutlineDepthOffset: 0.05
+    - _OutlineEnabled: 1
     - _OutlineOverridden: 0
     - _OutlineScale: 1
     - _OutlineVisible: 1
@@ -459,7 +464,7 @@ Material:
     - _ReceiveShadows: 0
     - _ReceivesSSR: 1
     - _RefractionModel: 0
-    - _RimEnabled: 0
+    - _RimEnabled: 1
     - _RimLight: 1
     - _RimLightOverridden: 0
     - _RimLightVisible: 1
@@ -485,7 +490,7 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularAAScreenSpaceVariance: 0.1
     - _SpecularAAThreshold: 0.2
-    - _SpecularEnabled: 0
+    - _SpecularEnabled: 1
     - _SpecularHighlights: 1
     - _SpecularOcclusionMode: 1
     - _SpecularPower: 20
@@ -589,7 +594,7 @@ Material:
     - _LightAttenuation: {r: 0, g: 1, b: 0, a: 0}
     - _LightmapDirection: {r: 0, g: 1, b: 0, a: 0}
     - _MatCapColor: {r: 1, g: 1, b: 1, a: 1}
-    - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineMaskColor: {r: 0, g: 0, b: 0, a: 1}
     - _Outline_Color: {r: 1, g: 1, b: 1, a: 1}
     - _RimLightColor: {r: 0.8784314, g: 0.7607843, b: 0.7254902, a: 1}
