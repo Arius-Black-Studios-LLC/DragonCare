@@ -16,4 +16,9 @@ MonoBehaviour:
   DragonName: Tummykins
   DragonObject: {fileID: 6623304647119115248, guid: f76e6995659483841be2806c22ce56f7,
     type: 3}
-  DragonCategory: {fileID: 11400000, guid: 980272c9d92028345aa20b26299addf9, type: 2}
+  DragonCategory: 2
+  Hat_id: -1
+  Backpack_id: -1
+  pet_id: -1
+  holding_id: -1
+  Rideable_id: 0

@@ -58,7 +58,7 @@ public class ColorGradingRenderer : CompoundRenderer {
         return shouldRenderEffect;
     }
 
-    public override void Render(CommandBuffer cmd, RenderTargetIdentifier source, RenderTargetIdentifier destination,
+    public override void Render(CommandBuffer cmd, RTHandle source, RTHandle destination,
                                 ref RenderingData renderingData, InjectionPoint injectionPoint) {
         RenderTextureDescriptor descriptor = GetTempRTDescriptor(renderingData);
 

@@ -30,16 +30,43 @@ public class DressUPInventoryButton : MonoBehaviour
             {
                 currDragon.Hat_id = accesory.accesory_id;
                 PlayerManager.instance.dragonInFocus.wardorbManager.EquipHat(accesory.accesory_GO);
-                PlayerManager.instance.SaveDragonChanges(currDragon);
+
+
+            }
+            else if (accesory.accesory_type == AccesoryType.Back)
+            {
+                currDragon.Backpack_id = accesory.accesory_id;
+                PlayerManager.instance.dragonInFocus.wardorbManager.EquipBackpackItem(accesory.accesory_GO);
+
+
+            }
+            else if (accesory.accesory_type == AccesoryType.Hold)
+            {
+                currDragon.holding_id = accesory.accesory_id;
+                PlayerManager.instance.dragonInFocus.wardorbManager.EquipHoldingItem(accesory.accesory_GO);
+
+
+            }
+            else if (accesory.accesory_type == AccesoryType.Rideable)
+            {
+                currDragon.Rideable_id = accesory.accesory_id;
+                PlayerManager.instance.dragonInFocus.wardorbManager.EquipRideableItem(accesory.accesory_GO);
+
 
             }
             else
             {
                 currDragon.pet_id = accesory.accesory_id;
                 PlayerManager.instance.dragonInFocus.wardorbManager.EquipPet(accesory.accesory_GO);
-                PlayerManager.instance.SaveDragonChanges(currDragon);
+
             }
+
+            PlayerManager.instance.SaveDragonChanges(currDragon);
+
         }
 
     }
+
+
+
 }

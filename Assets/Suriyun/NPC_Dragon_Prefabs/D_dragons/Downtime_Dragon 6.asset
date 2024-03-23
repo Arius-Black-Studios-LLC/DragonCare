@@ -16,4 +16,9 @@ MonoBehaviour:
   DragonName: ButterBall
   DragonObject: {fileID: 7027128623465740531, guid: 86ea68d83a0171d4cabd66a1fcafba64,
     type: 3}
-  DragonCategory: {fileID: 11400000, guid: 96f54a446b45cfa45832dd6e198bb81a, type: 2}
+  DragonCategory: 1
+  Hat_id: 4
+  Backpack_id: -1
+  pet_id: -1
+  holding_id: -1
+  Rideable_id: 0

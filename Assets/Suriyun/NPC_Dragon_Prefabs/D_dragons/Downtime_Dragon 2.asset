@@ -16,4 +16,9 @@ MonoBehaviour:
   DragonName: Pudge
   DragonObject: {fileID: 6929608177274815642, guid: efbbfbeb1210e63428cf586fdb11547c,
     type: 3}
-  DragonCategory: {fileID: 11400000, guid: 96f54a446b45cfa45832dd6e198bb81a, type: 2}
+  DragonCategory: 1
+  Hat_id: 1
+  Backpack_id: -1
+  pet_id: -1
+  holding_id: -1
+  Rideable_id: 0

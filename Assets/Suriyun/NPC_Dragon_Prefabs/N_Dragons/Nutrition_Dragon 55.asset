@@ -16,4 +16,9 @@ MonoBehaviour:
   DragonName: Tubbytub
   DragonObject: {fileID: 1250857031637685893, guid: da5c52069b93ccf4fb118b1b01bd28dd,
     type: 3}
-  DragonCategory: {fileID: 11400000, guid: 9aafdae6e49679c479f7cacc653351d0, type: 2}
+  DragonCategory: 6
+  Hat_id: -1
+  Backpack_id: -1
+  pet_id: -1
+  holding_id: -1
+  Rideable_id: 0

@@ -16,4 +16,9 @@ MonoBehaviour:
   DragonName: Cheesecake
   DragonObject: {fileID: 3762759845408398012, guid: 04ef35a4ef9d16744816e7839871d0f5,
     type: 3}
-  DragonCategory: {fileID: 11400000, guid: 28bde3a3b73c59745a010741b7ba7220, type: 2}
+  DragonCategory: 5
+  Hat_id: -1
+  Backpack_id: -1
+  pet_id: -1
+  holding_id: -1
+  Rideable_id: 0

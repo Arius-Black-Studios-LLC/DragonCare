@@ -16,4 +16,9 @@ MonoBehaviour:
   DragonName: Cookie
   DragonObject: {fileID: 6648736682666752292, guid: 1f48b1e160788f1428f1125ce83b4f96,
     type: 3}
-  DragonCategory: {fileID: 11400000, guid: 28bde3a3b73c59745a010741b7ba7220, type: 2}
+  DragonCategory: 5
+  Hat_id: -1
+  Backpack_id: -1
+  pet_id: -1
+  holding_id: -1
+  Rideable_id: 0

@@ -16,4 +16,9 @@ MonoBehaviour:
   DragonName: Lolly
   DragonObject: {fileID: 2836030962984666829, guid: f2041fd9e2f30b84eb8881fea30d1880,
     type: 3}
-  DragonCategory: {fileID: 11400000, guid: 28bde3a3b73c59745a010741b7ba7220, type: 2}
+  DragonCategory: 5
+  Hat_id: -1
+  Backpack_id: -1
+  pet_id: -1
+  holding_id: -1
+  Rideable_id: 0

@@ -14,6 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DragonID: 1037
   DragonName: Pudgy
-  DragonObject: {fileID: 9062117758075992411, guid: 1617a859fb8bf7a4d8bf2c7482011eae,
+  DragonObject: {fileID: 3499216872258121266, guid: 75652ce0126303b45adc5329576e70ae,
     type: 3}
-  DragonCategory: {fileID: 11400000, guid: 5a69727d95dab77419dddf6f0e9358dd, type: 2}
+  DragonCategory: 4
+  Hat_id: -1
+  Backpack_id: -1
+  pet_id: -1
+  holding_id: -1
+  Rideable_id: 0

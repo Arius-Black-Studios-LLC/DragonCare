@@ -7,7 +7,7 @@ using UnityEngine;
 public class DragonAnimManager : MonoBehaviour
 {
 
-    Animator animator;
+    public Animator animator;
 
     private void Start()
     {

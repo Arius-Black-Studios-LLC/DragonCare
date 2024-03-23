@@ -16,4 +16,9 @@ MonoBehaviour:
   DragonName: Pancake
   DragonObject: {fileID: 7781718168132376119, guid: e28b1c5fc678aea47a6593a195af1d01,
     type: 3}
-  DragonCategory: {fileID: 11400000, guid: 9aafdae6e49679c479f7cacc653351d0, type: 2}
+  DragonCategory: 6
+  Hat_id: -1
+  Backpack_id: -1
+  pet_id: -1
+  holding_id: -1
+  Rideable_id: 0

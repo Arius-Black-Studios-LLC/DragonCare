@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 
-public enum AccesoryType { Hat, Pet}
+public enum AccesoryType { Hat, Pet, Back, Hold, Rideable}
 [CreateAssetMenu(menuName = "DragonCare/Accesory")]
 public class DragonAccesory : ScriptableObject
 {

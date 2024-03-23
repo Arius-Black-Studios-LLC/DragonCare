@@ -12,18 +12,11 @@ public class ShopUIManger : MonoBehaviour
     public TMP_Text D_taskText, R_taskText, A_taskText, G_TaskText, O_TaskText, N_TaskTexts, S_TasksText;
 
 
-    [Header("Egg Icons")]
-
-    public Image D_eggImage;
-    public Image  R_eggImage, A_eggImage, G_eggImage, O_eggImage, N_eggImage, S_eggImage;
-
     [Header("Buttons")]
     public Button D_EggButton;
     public Button R_EggButton, A_EggButton, G_EggButton, O_EggButton, N_EggButton, S_EggButton;
 
-    [Header("Dragon Categories")]
-    public DRAGONCategory D_cat;
-    public DRAGONCategory R_cat, A_cat, G_cat,O_cat,N_cat,S_cat;
+
 
 
     public TMP_Text eggPrice;
@@ -34,15 +27,6 @@ public class ShopUIManger : MonoBehaviour
         FillStatsWindow();
         ButtonActiveOrInactive();
 
-
-        D_eggImage.sprite = D_cat.eggIcon;
-        R_eggImage.sprite = R_cat.eggIcon;
-        A_eggImage.sprite = A_cat.eggIcon;
-        G_eggImage.sprite = G_cat.eggIcon;
-        O_eggImage.sprite = O_cat.eggIcon;
-        N_eggImage.sprite = N_cat.eggIcon;
-        S_eggImage.sprite = S_cat.eggIcon;
-
     }
 
     private void OnEnable()
@@ -51,96 +35,63 @@ public class ShopUIManger : MonoBehaviour
         ButtonActiveOrInactive();
     }
 
-
-    public void BuyD_Egg()
+    private void BuyDragon(DRAGONCategory category, bool freeEgg = false)
     {
-        DragonNPCScriptable[] sublistOfDRagons = DragonDatabase.instance.dragons.Where(dragon => DragonDatabase.instance.getDragonByID(dragon.DragonID).DragonCategory == D_cat).ToArray();
-        int dragonID = sublistOfDRagons[UnityEngine.Random.Range(0, sublistOfDRagons.Length)].DragonID;
-        PlayerManager.instance.AddDragon(dragonID);
+        int newDragon = -1;
+        if (category == DRAGONCategory.Any)
+        {
+            newDragon = DragonDatabase.instance.dragons[UnityEngine.Random.Range(0, DragonDatabase.instance.dragons.Length)].DragonID;
+        }
+        else
+        {
+            DragonNPCScriptable[] sublistOfDRagons = DragonDatabase.instance.dragons.Where(dragon => DragonDatabase.instance.getDragonByID(dragon.DragonID).DragonCategory == category).ToArray();
+            newDragon = sublistOfDRagons[UnityEngine.Random.Range(0, sublistOfDRagons.Length)].DragonID;
 
-        PlayerManager.instance.playerData.productivityPoints -= 100;
-        PlayerManager.instance.playerData.D_tasks -= PlayerManager.instance.playerData.EggPricePerCat;
-        PlayerManager.instance.IncreaseEggPricePerCat();
-        PlayerManager.instance.SaveCurencies();
+        }
+
+        PlayerManager.instance.AddDragon(newDragon, category, freeEgg);
+
         ButtonActiveOrInactive();
         FillStatsWindow();
+    }
+    public void BuyD_Egg()
+    {
+        BuyDragon(DRAGONCategory.D);
 
     }
     public void BuyR_Egg()
     {
-        DragonNPCScriptable[] sublistOfDRagons = DragonDatabase.instance.dragons.Where(dragon => DragonDatabase.instance.getDragonByID(dragon.DragonID).DragonCategory == R_cat).ToArray();
-        int dragonID = sublistOfDRagons[UnityEngine.Random.Range(0, sublistOfDRagons.Length)].DragonID;
-        PlayerManager.instance.AddDragon(dragonID);
-        PlayerManager.instance.playerData.productivityPoints -= 100;
-        PlayerManager.instance.playerData.R_tasks -= PlayerManager.instance.playerData.EggPricePerCat;
-        PlayerManager.instance.SaveCurencies();
-        ButtonActiveOrInactive();
-        FillStatsWindow();
+        BuyDragon(DRAGONCategory.R);
 
     }
 
     public void BuyA_Egg()
     {
-        DragonNPCScriptable[] sublistOfDRagons = DragonDatabase.instance.dragons.Where(dragon => DragonDatabase.instance.getDragonByID(dragon.DragonID).DragonCategory == A_cat).ToArray();
-        int dragonID = sublistOfDRagons[UnityEngine.Random.Range(0, sublistOfDRagons.Length)].DragonID;
-        PlayerManager.instance.AddDragon(dragonID);
-        PlayerManager.instance.playerData.productivityPoints -= 100;
-        PlayerManager.instance.playerData.A_tasks -= PlayerManager.instance.playerData.EggPricePerCat;
-        PlayerManager.instance.SaveCurencies();
-        ButtonActiveOrInactive();
-        FillStatsWindow();
+        BuyDragon(DRAGONCategory.A);
 
     }
 
     public void BuyG_Egg()
     {
-        DragonNPCScriptable[] sublistOfDRagons = DragonDatabase.instance.dragons.Where(dragon => DragonDatabase.instance.getDragonByID(dragon.DragonID).DragonCategory == G_cat).ToArray();
-        int dragonID = sublistOfDRagons[UnityEngine.Random.Range(0, sublistOfDRagons.Length)].DragonID;
-        PlayerManager.instance.AddDragon(dragonID);
-        PlayerManager.instance.playerData.productivityPoints -= 100;
-        PlayerManager.instance.playerData.G_tasks -= PlayerManager.instance.playerData.EggPricePerCat;
-        PlayerManager.instance.SaveCurencies();
-        ButtonActiveOrInactive();
-        FillStatsWindow();
+        BuyDragon(DRAGONCategory.G);
 
     }
 
     public void BuyO_Egg()
     {
-        DragonNPCScriptable[] sublistOfDRagons = DragonDatabase.instance.dragons.Where(dragon => DragonDatabase.instance.getDragonByID(dragon.DragonID).DragonCategory == O_cat).ToArray();
-        int dragonID = sublistOfDRagons[UnityEngine.Random.Range(0, sublistOfDRagons.Length)].DragonID;
-        PlayerManager.instance.AddDragon(dragonID);
-        PlayerManager.instance.playerData.productivityPoints -= 100;
-        PlayerManager.instance.playerData.O_tasks -= PlayerManager.instance.playerData.EggPricePerCat;
-        PlayerManager.instance.SaveCurencies();
-        ButtonActiveOrInactive();
-        FillStatsWindow();
+        BuyDragon(DRAGONCategory.O);
 
     }
 
     public void BuyN_Egg()
     {
-        DragonNPCScriptable[] sublistOfNRagons = DragonDatabase.instance.dragons.Where(dragon => DragonDatabase.instance.getDragonByID(dragon.DragonID).DragonCategory == N_cat).ToArray();
-        int dragonID = sublistOfNRagons[UnityEngine.Random.Range(0, sublistOfNRagons.Length)].DragonID;
-        PlayerManager.instance.AddDragon(dragonID);
-        PlayerManager.instance.playerData.productivityPoints -= 100;
-        PlayerManager.instance.playerData.N_tasks -= PlayerManager.instance.playerData.EggPricePerCat;
-        PlayerManager.instance.SaveCurencies();
-        ButtonActiveOrInactive();
-        FillStatsWindow();
+        BuyDragon(DRAGONCategory.N);
 
     }
 
     public void BuyS_Egg()
     {
-        DragonNPCScriptable[] sublistOfDRagons = DragonDatabase.instance.dragons.Where(dragon => DragonDatabase.instance.getDragonByID(dragon.DragonID).DragonCategory == S_cat).ToArray();
-        int dragonID = sublistOfDRagons[UnityEngine.Random.Range(0, sublistOfDRagons.Length)].DragonID;
-        PlayerManager.instance.AddDragon(dragonID);
-        PlayerManager.instance.playerData.productivityPoints -= 100;
-        PlayerManager.instance.playerData.S_tasks -= PlayerManager.instance.playerData.EggPricePerCat;
-        PlayerManager.instance.SaveCurencies();
-        ButtonActiveOrInactive();
-        FillStatsWindow();
+        BuyDragon(DRAGONCategory.S);
 
     }
 

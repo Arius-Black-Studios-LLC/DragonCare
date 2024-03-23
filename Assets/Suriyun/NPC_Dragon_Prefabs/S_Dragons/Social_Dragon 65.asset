@@ -16,4 +16,9 @@ MonoBehaviour:
   DragonName: Plumpster
   DragonObject: {fileID: 4206227984862183069, guid: 41316f2dbdb176d49b168c088fd2b4ee,
     type: 3}
-  DragonCategory: {fileID: 11400000, guid: 28bde3a3b73c59745a010741b7ba7220, type: 2}
+  DragonCategory: 7
+  Hat_id: -1
+  Backpack_id: -1
+  pet_id: -1
+  holding_id: -1
+  Rideable_id: 0

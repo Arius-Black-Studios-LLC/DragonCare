@@ -16,4 +16,9 @@ MonoBehaviour:
   DragonName: Shortcake
   DragonObject: {fileID: 6307678718431117502, guid: 1017e1ae9c242b54fb494cfaf5f6f2b0,
     type: 3}
-  DragonCategory: {fileID: 11400000, guid: 28bde3a3b73c59745a010741b7ba7220, type: 2}
+  DragonCategory: 5
+  Hat_id: -1
+  Backpack_id: -1
+  pet_id: -1
+  holding_id: -1
+  Rideable_id: 0

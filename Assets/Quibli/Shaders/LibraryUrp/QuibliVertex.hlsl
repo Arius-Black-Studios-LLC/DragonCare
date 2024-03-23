@@ -46,9 +46,7 @@ Varyings LitPassVertex(Attributes input)
     half fogFactor = ComputeFogFactor(vertexInput.positionCS.z);
     #endif
 
-    half3 viewDirWS = GetWorldSpaceViewDir(vertexInput.positionWS);
-    half3 vertexLight = VertexLighting(vertexInput.positionWS, normalInput.normalWS);
-
+    const half3 viewDirWS = GetWorldSpaceViewDir(vertexInput.positionWS);
     output.uv = TRANSFORM_TEX(input.texcoord, _BaseMap);
 
     // already normalized from normal transform to WS.
@@ -67,10 +65,14 @@ Varyings LitPassVertex(Attributes input)
     output.dynamicLightmapUV = input.dynamicLightmapUV.xy * unity_DynamicLightmapST.xy + unity_DynamicLightmapST.zw;
     #endif
 
+    #if UNITY_VERSION >= 202318
+    OUTPUT_SH4(vertexInput.positionWS, output.normalWS.xyz, GetWorldSpaceNormalizeViewDir(vertexInput.positionWS), output.vertexSH);
+    #else
     #if UNITY_VERSION >= 202310
     OUTPUT_SH(vertexInput.positionWS, output.normalWS.xyz, GetWorldSpaceNormalizeViewDir(vertexInput.positionWS), output.vertexSH);
     #else
     OUTPUT_SH(output.normalWS.xyz, output.vertexSH);
+    #endif
     #endif
 
     #ifdef _ADDITIONAL_LIGHTS_VERTEX

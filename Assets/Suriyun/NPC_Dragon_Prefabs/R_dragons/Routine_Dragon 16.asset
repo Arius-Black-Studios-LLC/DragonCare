@@ -16,4 +16,9 @@ MonoBehaviour:
   DragonName: Fattykins
   DragonObject: {fileID: 4329304218020361724, guid: 804c54585e655ff4d801f19ce2f94877,
     type: 3}
-  DragonCategory: {fileID: 11400000, guid: 980272c9d92028345aa20b26299addf9, type: 2}
+  DragonCategory: 2
+  Hat_id: -1
+  Backpack_id: -1
+  pet_id: -1
+  holding_id: -1
+  Rideable_id: 0

@@ -16,4 +16,9 @@ MonoBehaviour:
   DragonName: Blubber
   DragonObject: {fileID: 3265265921578084441, guid: 042d141075be7de41afff250ebcc0eb3,
     type: 3}
-  DragonCategory: {fileID: 11400000, guid: 7b91e27d178b76c4dbfe4d4d2b94d799, type: 2}
+  DragonCategory: 3
+  Hat_id: -1
+  Backpack_id: -1
+  pet_id: -1
+  holding_id: -1
+  Rideable_id: 0

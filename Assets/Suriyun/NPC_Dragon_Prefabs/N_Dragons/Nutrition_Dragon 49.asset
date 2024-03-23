@@ -16,4 +16,9 @@ MonoBehaviour:
   DragonName: Flubber
   DragonObject: {fileID: 3851080673905169079, guid: 449f7d1367668da4eba5c53230d94c24,
     type: 3}
-  DragonCategory: {fileID: 11400000, guid: 9aafdae6e49679c479f7cacc653351d0, type: 2}
+  DragonCategory: 6
+  Hat_id: -1
+  Backpack_id: -1
+  pet_id: -1
+  holding_id: -1
+  Rideable_id: 0

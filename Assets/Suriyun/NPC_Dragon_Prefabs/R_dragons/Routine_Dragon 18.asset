@@ -16,4 +16,9 @@ MonoBehaviour:
   DragonName: Wobble
   DragonObject: {fileID: 4298978997396215882, guid: 9f495dec407b7204aa38324435af06ff,
     type: 3}
-  DragonCategory: {fileID: 11400000, guid: 980272c9d92028345aa20b26299addf9, type: 2}
+  DragonCategory: 2
+  Hat_id: -1
+  Backpack_id: -1
+  pet_id: -1
+  holding_id: -1
+  Rideable_id: 0

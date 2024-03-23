@@ -5,7 +5,7 @@
 #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Version.hlsl"
 
 // Check is needed because in Unity 2021 they use two different URP versions - 14 on desktop and 12 on mobile.
-#if !VERSION_LOWER(13, 0)
+#if UNITY_VERSION >= 202210
 #if defined(LOD_FADE_CROSSFADE)
     #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/LODCrossFade.hlsl"
 #endif
@@ -108,6 +108,11 @@ void InitializeInputData(Varyings input, half3 normalTS, out InputData inputData
     inputData.vertexLighting = half3(0, 0, 0);
     #endif
 
+    // Note: This needs to not interfere with _ADDITIONAL_LIGHTS_VERTEX
+    #if defined(DR_VERTEX_COLORS_ON)
+    inputData.vertexLighting = input.VertexColor.rgb;
+    #endif
+    
     #if defined(DYNAMICLIGHTMAP_ON)
     inputData.bakedGI = SAMPLE_GI(input.staticLightmapUV, input.dynamicLightmapUV, input.vertexSH, inputData.normalWS);
     #else
@@ -143,40 +148,17 @@ half4 StylizedPassFragment(Varyings input) : SV_Target
 
     InputData inputData;
     InitializeInputData(input, surfaceData.normalTS, inputData);
+    #if UNITY_VERSION >= 202330
+    SETUP_DEBUG_TEXTURE_DATA(inputData, input.uv);
+    #elif UNITY_VERSION >= 202210
     SETUP_DEBUG_TEXTURE_DATA(inputData, input.uv, _BaseMap);
+    #endif
 
-#ifdef _DBUFFER
+    #ifdef _DBUFFER
     ApplyDecalToSurfaceData(input.positionCS, surfaceData, inputData);
-#endif
+    #endif
 
-    // Computes direct light contribution.
-    half4 color = UniversalFragment_DSTRM(inputData, surfaceData.albedo, surfaceData.emission, surfaceData.alpha);
-
-    {
-#if defined(_TEXTUREBLENDINGMODE_ADD)
-        color.rgb += lerp(half3(0.0f, 0.0f, 0.0f), surfaceData.albedo, _TextureImpact);
-#else  // _TEXTUREBLENDINGMODE_MULTIPLY
-        color.rgb *= lerp(half3(1.0f, 1.0f, 1.0f), surfaceData.albedo, _TextureImpact);
-#endif
-    }
-
-    {
-        const half4 tex = SAMPLE_TEXTURE2D(_DetailMap, sampler_DetailMap, input.uv);
-        const half4 impact = tex * _DetailMapImpact;
-#if defined(_DETAILMAPBLENDINGMODE_ADD)
-        color.rgb += lerp(0, _DetailMapColor, impact).rgb;
-#endif
-#if defined(_DETAILMAPBLENDINGMODE_MULTIPLY)
-        color.rgb *= lerp(1, _DetailMapColor, impact).rgb;
-#endif
-#if defined(_DETAILMAPBLENDINGMODE_INTERPOLATE)
-        color.rgb = lerp(color, _DetailMapColor, impact).rgb;
-#endif
-    }
-
-#if defined(DR_VERTEX_COLORS_ON)
-    color.rgb *= input.VertexColor.rgb;
-#endif
+    half4 color = UniversalFragment_DSTRM(inputData, surfaceData, input.uv);
 
     color.rgb = MixFog(color.rgb, inputData.fogCoord);
 

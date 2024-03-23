@@ -1359,8 +1359,7 @@ Transform:
   m_LocalPosition: {x: -0.41603908, y: -0.36259058, z: 2.6047028e-16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5357510855762496474}
+  m_Children: []
   m_Father: {fileID: 389426696867922651}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1780,6 +1779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b459070d66f76624683afc647f032470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!114 &7036096952938702807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1792,36 +1792,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06891bb018903f34a897aece099074d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hatKeyword: HAT
-  hatAttachmentPoint: {fileID: 5357510855762496474}
---- !u!1 &7794005770958879026
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5357510855762496474}
-  m_Layer: 0
-  m_Name: HatAttachment
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5357510855762496474
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7794005770958879026}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 389426696867922645}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  holdingSpotName: Head
+  holdingSpotParentPrefab: {fileID: 8268644646269121361, guid: 73195b82a9b613d41ad3cb9d4c1628a9,
+    type: 3}
+  hatSpotName: Head
+  hatSpotParentPrefab: {fileID: 6306766840378134758, guid: 0f432d103ffffda4d97efb9ac4b3c70c,
+    type: 3}
+  rideableSpotName: Root
+  rideableSpotParentPrefab: {fileID: 1058163758565334755, guid: 3f50c267dcdab9c4b86cce7f2d902156,
+    type: 3}
+  backpacksSpotName: Spine1
+  backpacksSpotParentPrefab: {fileID: 1684508742143851261, guid: 70803c52abea0874cae8f58842443053,
+    type: 3}
+  backpacksSpotSpawnPoint: {fileID: 0}

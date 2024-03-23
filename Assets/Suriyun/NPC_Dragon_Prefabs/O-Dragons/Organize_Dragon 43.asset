@@ -16,4 +16,9 @@ MonoBehaviour:
   DragonName: GingerSnap
   DragonObject: {fileID: 4694950057482474774, guid: d13849a48bcaa7b4ca5ca6d313088f22,
     type: 3}
-  DragonCategory: {fileID: 11400000, guid: 28bde3a3b73c59745a010741b7ba7220, type: 2}
+  DragonCategory: 5
+  Hat_id: -1
+  Backpack_id: -1
+  pet_id: -1
+  holding_id: -1
+  Rideable_id: 0

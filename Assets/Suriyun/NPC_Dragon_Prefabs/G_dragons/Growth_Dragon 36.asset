@@ -14,6 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DragonID: 1036
   DragonName: Cinnamon
-  DragonObject: {fileID: 2899878893489047368, guid: 1ae41a53c203c8c45a9058094d4bcbc9,
+  DragonObject: {fileID: 3499216872258121266, guid: 681698cd3c3cbcb448df385eb20f8ba4,
     type: 3}
-  DragonCategory: {fileID: 11400000, guid: 5a69727d95dab77419dddf6f0e9358dd, type: 2}
+  DragonCategory: 4
+  Hat_id: -1
+  Backpack_id: -1
+  pet_id: -1
+  holding_id: -1
+  Rideable_id: 0

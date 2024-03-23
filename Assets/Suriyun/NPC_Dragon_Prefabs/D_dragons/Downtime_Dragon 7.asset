@@ -16,4 +16,9 @@ MonoBehaviour:
   DragonName: Chubbykins
   DragonObject: {fileID: 1842186563713226369, guid: cd3ee84c121d3574aa2ea6918ac6ad35,
     type: 3}
-  DragonCategory: {fileID: 11400000, guid: 96f54a446b45cfa45832dd6e198bb81a, type: 2}
+  DragonCategory: 1
+  Hat_id: -1
+  Backpack_id: -1
+  pet_id: -1
+  holding_id: -1
+  Rideable_id: 0

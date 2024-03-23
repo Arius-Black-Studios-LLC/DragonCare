@@ -16,4 +16,9 @@ MonoBehaviour:
   DragonName: Cupcake
   DragonObject: {fileID: 7638974705775782549, guid: e9f84bb8c53cb6f4081ddd807f9a817d,
     type: 3}
-  DragonCategory: {fileID: 11400000, guid: 980272c9d92028345aa20b26299addf9, type: 2}
+  DragonCategory: 2
+  Hat_id: -1
+  Backpack_id: -1
+  pet_id: -1
+  holding_id: -1
+  Rideable_id: 0

@@ -16,4 +16,9 @@ MonoBehaviour:
   DragonName: Puffy
   DragonObject: {fileID: 2505471160583310004, guid: c34d8ffe3d2f2cd4daa954a2a3dbab67,
     type: 3}
-  DragonCategory: {fileID: 11400000, guid: 9aafdae6e49679c479f7cacc653351d0, type: 2}
+  DragonCategory: 6
+  Hat_id: -1
+  Backpack_id: -1
+  pet_id: -1
+  holding_id: -1
+  Rideable_id: 0

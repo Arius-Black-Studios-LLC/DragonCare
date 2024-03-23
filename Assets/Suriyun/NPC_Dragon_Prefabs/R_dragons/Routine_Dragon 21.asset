@@ -16,4 +16,9 @@ MonoBehaviour:
   DragonName: Cuddlepuff
   DragonObject: {fileID: 5159011856500459702, guid: 17ac9ca73d8e2ff4d838b72a7b11bcaa,
     type: 3}
-  DragonCategory: {fileID: 11400000, guid: 980272c9d92028345aa20b26299addf9, type: 2}
+  DragonCategory: 2
+  Hat_id: -1
+  Backpack_id: -1
+  pet_id: -1
+  holding_id: -1
+  Rideable_id: 0

@@ -53,8 +53,10 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager instance;
     public PlayerData playerData = new PlayerData(); // Use the serializable class
     public int journalingBasePoints = 20;
+
     public DragonNPCManager dragonInFocus;
-    public List<GameObject> dragonsInScene = new List<GameObject>();
+    public ShopUIManger shopUIManger;
+
 
 
 
@@ -65,6 +67,7 @@ public class PlayerManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            shopUIManger =FindObjectOfType<ShopUIManger>();
         }
         else
         {
@@ -222,26 +225,16 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    [ContextMenu("Save")]
-    public async Task SaveAllPlayerData()
-    {
-        SavePlayerData(playerData.journal, "Journal");
-        SavePlayerData(playerData.unlockedDragons, "unlockedDragons");
-        SavePlayerData(playerData.unlockedAccesoryIDs, "unlockedAccesoryIds");
-        SavePlayerData(playerData.toDoListItems, "ToDoListItems");
-        SavePlayerData(playerData.journal, "Journal");
-        SavePlayerData(playerData.LastJournalEntry, "LastJournalEntry");
-        SavePlayerData(playerData.journalingStreak, "JournalingStreak");
-        SaveCurencies();
 
-    }
 
+
+    #region Save Stuff
 
     public void SaveDragonChanges(DragonNPCScriptable dragonNPCScriptable)
     {
-        foreach(DragonSaveSettings dragon in playerData.unlockedDragons)
+        foreach (DragonSaveSettings dragon in playerData.unlockedDragons)
         {
-            if(dragon.dragon_id == dragonNPCScriptable.DragonID)
+            if (dragon.dragon_id == dragonNPCScriptable.DragonID)
             {
                 dragon.Hat_id = dragonNPCScriptable.Hat_id;
                 dragon.pet_id = dragonNPCScriptable.pet_id;
@@ -251,7 +244,6 @@ public class PlayerManager : MonoBehaviour
             }
         }
     }
-
     public void SaveCurencies()
     {
         SavePlayerData(playerData.productivityPoints, "productivityPoints");
@@ -266,58 +258,25 @@ public class PlayerManager : MonoBehaviour
 
 
     }
-    public void IncreaseEggPricePerCat()
+
+    [ContextMenu("Save")]
+    public async Task SaveAllPlayerData()
     {
-        playerData.EggPricePerCat += 2;
+        SavePlayerData(playerData.journal, "Journal");
+        SavePlayerData(playerData.unlockedDragons, "unlockedDragons");
+        SavePlayerData(playerData.unlockedAccesoryIDs, "unlockedAccesoryIds");
+        SavePlayerData(playerData.toDoListItems, "ToDoListItems");
+        SavePlayerData(playerData.journal, "Journal");
+        SavePlayerData(playerData.LastJournalEntry, "LastJournalEntry");
+        SavePlayerData(playerData.journalingStreak, "JournalingStreak");
+        SaveCurencies();
+
     }
-
-    //called from Egg Granter Script when new dragon egg is hatched
-    public void AddDragon(int dragonID)
-    {
-        bool isDragonUnlocked = false;
-        foreach (DragonSaveSettings dragon in playerData.unlockedDragons)
-        {
-            if (dragon.dragon_id == dragonID)
-            {
-                isDragonUnlocked = true;
-                break;
-            }
-        }
-
-        // If the dragonID is not found in unlocked dragons, add it to the list
-        if (!isDragonUnlocked)
-        {
-            DragonSaveSettings newDragon = new DragonSaveSettings { dragon_id = dragonID };
-            playerData.unlockedDragons.Add(newDragon);
-            // Save file with new dragon added
-            SavePlayerData(playerData.unlockedDragons, "unlockedDragons");
-            NPCDragonSpawner.instance.SpawnNewUnLockedNPCDragon(newDragon);
-        }
-        else
-        {
-            //grant gems or something, accessories?
-            AddAccessories();
-        }
-    }
-
-    public void AddAccessories()
-    {
-       DragonAccesory newAccesory = DragonDatabase.instance.accesories[UnityEngine.Random.Range(0,DragonDatabase.instance.accesories.Length)];
-        if (playerData.unlockedAccesoryIDs.Contains(newAccesory.accesory_id))
-        {
-            playerData.productivityPoints += 100;
-            SavePlayerData(playerData.productivityPoints, "productivityPoints");
-        }
-        else
-        {
-            playerData.unlockedAccesoryIDs.Add(newAccesory.accesory_id);
-            SavePlayerData(playerData.unlockedAccesoryIDs, "unlockedAccesoryIds");
-        }
-    }
+    #endregion
 
 
-
-
+    #region Update Player Data
+    //Tasks
     public void AddTask(ToDoListItem item)
     {
         if (!playerData.toDoListItems.Contains(item))
@@ -326,16 +285,11 @@ public class PlayerManager : MonoBehaviour
             SavePlayerData<List<ToDoListItem>>(playerData.toDoListItems, "ToDoListItems");
         }
     }
-
-
-    public void AddNewJournalEntry(journalEntry newReading)
+    internal void RemoveTask(ToDoListItem taskItem)
     {
-        playerData.LastJournalEntry = newReading.entryDate;
-        playerData.journalingStreak++;
-        playerData.journal.Add(newReading);
-        SavePlayerData<List<journalEntry>>(playerData.journal, "Journal");
+        playerData.toDoListItems.Remove(taskItem);
+        SavePlayerData<List<ToDoListItem>>(playerData.toDoListItems, "ToDoListItems");
     }
-
     public void GrantPointsForCompleteingTask(ToDoListItem taskItem)
     {
         // You can implement your logic for granting points based on priority
@@ -377,62 +331,110 @@ public class PlayerManager : MonoBehaviour
         SavePlayerData(playerData.productivityPoints, "productivityPoints");
     }
 
-    //called to spawn dragons
-    public void SpawnDragonWithBrain(DragonSaveSettings dragon,GameObject _Brain)
+
+    //Currencies
+    public void IncreaseEggPricePerCat()
     {
-        GameObject dragonGO = DragonDatabase.instance.getDragonByID(dragon.dragon_id).DragonObject;
-        if (dragonGO != null)
-        {
-            //Spawn Dragon Manager
-            Vector3 randomOffset = new Vector3(UnityEngine.Random.Range(-10, 10), 5f, UnityEngine.Random.Range(-10, 10));
-            GameObject _SpawnedBrain = Instantiate(_Brain, transform.position + randomOffset, Quaternion.identity);
-            dragonsInScene.Add(_SpawnedBrain);
-
-            //set up dragon manager
-            DragonNPCManager DManager = _SpawnedBrain.GetComponent<DragonNPCManager>();
-            DManager.dragonID = dragon.dragon_id;
-
-
-            //spawn dragon body
-            Instantiate(dragonGO,_SpawnedBrain.transform);
-            DManager.animManager = _SpawnedBrain.GetComponentInChildren<DragonAnimManager>();
-            DManager.wardorbManager = _SpawnedBrain.GetComponentInChildren<DragonWardorbManager>();
-            DragonAccesory temp_hat = DragonDatabase.instance.getAccesoryByID(dragon.Hat_id);
-            if(temp_hat != null)
-            {
-                DManager.wardorbManager.EquipHat(temp_hat.accesory_GO);
-            }
-            DragonAccesory temp_pet = DragonDatabase.instance.getAccesoryByID(dragon.pet_id);
-            if (temp_pet != null)
-            {
-                DManager.wardorbManager.EquipPet(temp_pet.accesory_GO);
-            }
-
-
-
-        }
+        playerData.EggPricePerCat += 2;
     }
 
 
 
-    //void LoadPlayerData()
-    //{
-    //    if (File.Exists(Application.persistentDataPath + "/"+saveFilePath))
-    //    {
-    //        string json = File.ReadAllText(Application.persistentDataPath + "/"+saveFilePath);
-    //        Debug.Log("Loaded Dragon IDs: " + json);
+    #endregion
 
-    //        // Add this line to check the loaded JSON
-    //        Debug.Log("Loaded JSON: " + json);
 
-    //        playerData = JsonUtility.FromJson<PlayerData>(json);
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("Save file not found.");
-    //    }
-    //}
+   
+    public void AddDragon(int dragonID, DRAGONCategory category , bool freeEgg = false)
+    {
+        bool isDragonUnlocked = false;
+        foreach (DragonSaveSettings dragon in playerData.unlockedDragons)
+        {
+            if (dragon.dragon_id == dragonID)
+            {
+                isDragonUnlocked = true;
+                break;
+            }
+        }
 
+        // If the dragonID is not found in unlocked dragons, add it to the list
+        if (!isDragonUnlocked)
+        {
+            DragonSaveSettings newDragon = new DragonSaveSettings { dragon_id = dragonID };
+            playerData.unlockedDragons.Add(newDragon);
+
+            NPCDragonSpawner.instance.SpawnDragonWithBrain(newDragon);
+            SavePlayerData(playerData.unlockedDragons, "unlockedDragons");
+
+            //PAY FOR EGG
+            if (!freeEgg)
+            {
+                playerData.productivityPoints -= 100;
+
+                //TODO!!
+                switch (category)
+                {
+                    case DRAGONCategory.D:
+                        playerData.D_tasks -= PlayerManager.instance.playerData.EggPricePerCat;
+                        break;
+                    case DRAGONCategory.R:
+                        playerData.R_tasks -= PlayerManager.instance.playerData.EggPricePerCat;
+                        break;
+                    case DRAGONCategory.A:
+                        playerData.A_tasks -= PlayerManager.instance.playerData.EggPricePerCat;
+                        break;
+                    case DRAGONCategory.G:
+                        playerData.G_tasks -= PlayerManager.instance.playerData.EggPricePerCat;
+                        break;
+                    case DRAGONCategory.O:
+                        playerData.O_tasks -= PlayerManager.instance.playerData.EggPricePerCat;
+                        break;
+                    case DRAGONCategory.N:
+                        playerData.N_tasks -= PlayerManager.instance.playerData.EggPricePerCat;
+                        break;
+                    case DRAGONCategory.S:
+                        playerData.S_tasks -= PlayerManager.instance.playerData.EggPricePerCat;
+                        break;
+                    default:
+                        Debug.LogError("Unknown category!");
+                        break;
+                }
+
+                instance.IncreaseEggPricePerCat();
+                instance.SaveCurencies();
+
+            }
+
+        }
+        else
+        {
+            //grant gems or something, accessories?
+            AddAccessories();
+        }
+    }
+    public void AddAccessories()
+    {
+       DragonAccesory newAccesory = DragonDatabase.instance.accesories[UnityEngine.Random.Range(0,DragonDatabase.instance.accesories.Length)];
+        if (playerData.unlockedAccesoryIDs.Contains(newAccesory.accesory_id))
+        {
+            playerData.productivityPoints += 100;
+            SavePlayerData(playerData.productivityPoints, "productivityPoints");
+        }
+        else
+        {
+            playerData.unlockedAccesoryIDs.Add(newAccesory.accesory_id);
+            SavePlayerData(playerData.unlockedAccesoryIDs, "unlockedAccesoryIds");
+        }
+    }
+   
+    public void AddNewJournalEntry(journalEntry newReading)
+    {
+        playerData.LastJournalEntry = newReading.entryDate;
+        playerData.journalingStreak++;
+        playerData.journal.Add(newReading);
+        SavePlayerData<List<journalEntry>>(playerData.journal, "Journal");
+    }
+
+    
     async Task<T> LoadPlayerData<T>(string key)
     {
 
@@ -444,7 +446,6 @@ public class PlayerManager : MonoBehaviour
         T data = JsonConvert.DeserializeObject<T>(dataString);
         return data;
     }
-
     async void SavePlayerData<T>(T inData, string key)
     {
         string jsonData = JsonConvert.SerializeObject(inData);
@@ -452,12 +453,7 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("Data saved: " + jsonData);
         await CloudSaveService.Instance.Data.ForceSaveAsync(data);
     }
-
-    internal void RemoveTask(ToDoListItem taskItem)
-    {
-        playerData.toDoListItems.Remove(taskItem);
-        SavePlayerData<List<ToDoListItem>>( playerData.toDoListItems, "ToDoListItems");
-    }
+   
     internal void RemoveJournalEntry(journalEntry entry)
     {
         playerData.journal.Remove(entry);

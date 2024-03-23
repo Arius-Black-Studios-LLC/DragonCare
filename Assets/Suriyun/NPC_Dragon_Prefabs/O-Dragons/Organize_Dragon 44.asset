@@ -16,4 +16,9 @@ MonoBehaviour:
   DragonName: Tater Tot
   DragonObject: {fileID: 486811246131181152, guid: e7509ecab0513514a8c0f0add76b0988,
     type: 3}
-  DragonCategory: {fileID: 11400000, guid: 28bde3a3b73c59745a010741b7ba7220, type: 2}
+  DragonCategory: 5
+  Hat_id: -1
+  Backpack_id: -1
+  pet_id: -1
+  holding_id: -1
+  Rideable_id: 0

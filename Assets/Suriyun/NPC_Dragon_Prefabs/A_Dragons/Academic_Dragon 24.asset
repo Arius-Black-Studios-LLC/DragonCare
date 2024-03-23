@@ -16,4 +16,9 @@ MonoBehaviour:
   DragonName: Plumpkin
   DragonObject: {fileID: 5491570989366071616, guid: 0445d08114ca1be4e9738203a07d4b40,
     type: 3}
-  DragonCategory: {fileID: 11400000, guid: 7b91e27d178b76c4dbfe4d4d2b94d799, type: 2}
+  DragonCategory: 3
+  Hat_id: -1
+  Backpack_id: -1
+  pet_id: -1
+  holding_id: -1
+  Rideable_id: 0

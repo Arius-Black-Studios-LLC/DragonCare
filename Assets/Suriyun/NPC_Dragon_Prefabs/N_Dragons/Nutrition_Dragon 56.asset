@@ -16,4 +16,9 @@ MonoBehaviour:
   DragonName: Cuppy
   DragonObject: {fileID: 363707629324062336, guid: 4ecc1a7dcc2f5c847b8a485acda5498d,
     type: 3}
-  DragonCategory: {fileID: 11400000, guid: 9aafdae6e49679c479f7cacc653351d0, type: 2}
+  DragonCategory: 6
+  Hat_id: -1
+  Backpack_id: -1
+  pet_id: -1
+  holding_id: -1
+  Rideable_id: 0

@@ -6,12 +6,25 @@ using TMPro;
 
 public class NPCDragonSpawner : MonoBehaviour
 {
-    public static NPCDragonSpawner instance; 
-    public GameObject NPC_Brain;
-    public CinemachineFreeLook cam;
-    public TMP_Text dragonName;
+    public static NPCDragonSpawner instance;
 
+    [Header("Prefabs")]
+    [Tooltip("The Prefab that controls the NPC Dragons")]
+    [SerializeField]private GameObject NPC_Brain;
+
+    [Space(5)]
+    [Header("Scene References")]
+    [SerializeField]private CinemachineFreeLook cam;
+    [SerializeField]private TMP_Text dragonName;
+    [SerializeField]private GameObject firstDragonUI;
+
+    private List<GameObject> dragonsInScene = new List<GameObject>();
     private int dragonIndex;
+    private bool isFirstTimePlaying;
+
+
+
+
     private void Awake()
     {
         if (instance == null)
@@ -23,37 +36,28 @@ public class NPCDragonSpawner : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    public void SpawnNPCDragons()
+    private void Start()
     {
-        foreach(DragonSaveSettings dragon in PlayerManager.instance.playerData.unlockedDragons)
+        Debug.Log("Dragons unlocked :" + PlayerManager.instance.playerData.unlockedDragons.Count);
+        isFirstTimePlaying = PlayerManager.instance.playerData.unlockedDragons.Count <= 0;
+
+        if (!isFirstTimePlaying)
         {
-
-                PlayerManager.instance.SpawnDragonWithBrain(dragon, NPC_Brain);
-            
-
+            SpawnNPCDragons();
+            firstDragonUI.SetActive(false);
         }
-        dragonIndex = Random.Range(0, PlayerManager.instance.dragonsInScene.Count - 1);
-        GameObject lookFollow = PlayerManager.instance.dragonsInScene[dragonIndex];
-        PlayerManager.instance.dragonInFocus = lookFollow.GetComponent<DragonNPCManager>();
-        ShowDragonName();
-        cam.Follow = lookFollow.transform;
-        cam.LookAt = lookFollow.transform;
     }
 
-    public void SpawnNewUnLockedNPCDragon(DragonSaveSettings newDragon)
-    {
-        PlayerManager.instance.SpawnDragonWithBrain(newDragon, NPC_Brain);
-    }
 
+    #region Button Functions
     public void LookAtNextDragon()
     {
         dragonIndex++;
-        if(dragonIndex >= PlayerManager.instance.dragonsInScene.Count)
+        if (dragonIndex >= dragonsInScene.Count)
         {
             dragonIndex = 0;
         }
-        GameObject lookFollow = PlayerManager.instance.dragonsInScene[dragonIndex];
+        GameObject lookFollow = dragonsInScene[dragonIndex];
         PlayerManager.instance.dragonInFocus = lookFollow.GetComponent<DragonNPCManager>();
         cam.Follow = lookFollow.transform;
         cam.LookAt = lookFollow.transform;
@@ -64,16 +68,83 @@ public class NPCDragonSpawner : MonoBehaviour
         dragonIndex--;
         if (dragonIndex < 0)
         {
-            dragonIndex = PlayerManager.instance.dragonsInScene.Count-1;
+            dragonIndex = dragonsInScene.Count - 1;
         }
-        GameObject lookFollow = PlayerManager.instance.dragonsInScene[dragonIndex];
+        GameObject lookFollow = dragonsInScene[dragonIndex];
         PlayerManager.instance.dragonInFocus = lookFollow.GetComponent<DragonNPCManager>();
         cam.Follow = lookFollow.transform;
         cam.LookAt = lookFollow.transform;
         ShowDragonName();
     }
-    public void ShowDragonName()
+
+    //Called By The New Player Dragon Granting UI
+    public void GiveDragonToPlayer()
     {
-        dragonName.text = DragonDatabase.instance.getDragonByID(PlayerManager.instance.dragonsInScene[dragonIndex].GetComponent<DragonNPCManager>().dragonID).DragonName;
+        int newDragon = DragonDatabase.instance.dragons[UnityEngine.Random.Range(0, DragonDatabase.instance.dragons.Length)].DragonID;
+        PlayerManager.instance.AddDragon(newDragon,DRAGONCategory.Any,true);
+        firstDragonUI.SetActive(false);
+    }
+    #endregion
+
+    public void SpawnDragonWithBrain(DragonSaveSettings dragon)
+    {
+        GameObject dragonGO = DragonDatabase.instance.getDragonByID(dragon.dragon_id).DragonObject;
+        if (dragonGO != null)
+        {
+            //Spawn Dragon Manager
+            Vector3 randomOffset = new Vector3(UnityEngine.Random.Range(-10, 10), 5f, UnityEngine.Random.Range(-10, 10));
+            GameObject _SpawnedBrain = Instantiate(NPC_Brain, transform.position + randomOffset, Quaternion.identity);
+            dragonsInScene.Add(_SpawnedBrain);
+
+            //set up dragon manager
+            DragonNPCManager DManager = _SpawnedBrain.GetComponent<DragonNPCManager>();
+            DManager.dragonID = dragon.dragon_id;
+
+
+            //spawn dragon body
+            Instantiate(dragonGO, _SpawnedBrain.transform);
+
+            DManager.animManager = _SpawnedBrain.GetComponentInChildren<DragonAnimManager>();
+            DManager.wardorbManager = _SpawnedBrain.GetComponentInChildren<DragonWardorbManager>();
+
+            DragonAccesory temp_hat = DragonDatabase.instance.getAccesoryByID(dragon.Hat_id);
+            if (temp_hat != null)
+            {
+                DManager.wardorbManager.EquipHat(temp_hat.accesory_GO);
+            }
+            DragonAccesory temp_pet = DragonDatabase.instance.getAccesoryByID(dragon.pet_id);
+            if (temp_pet != null)
+            {
+                DManager.wardorbManager.EquipPet(temp_pet.accesory_GO);
+            }
+
+
+
+        }
+    }
+
+    private void SpawnNPCDragons()
+    {
+        foreach(DragonSaveSettings dragon in PlayerManager.instance.playerData.unlockedDragons)
+        {
+                SpawnDragonWithBrain(dragon);
+        }
+
+        dragonIndex = Random.Range(0, dragonsInScene.Count - 1);
+        GameObject lookFollow = dragonsInScene[dragonIndex];
+        PlayerManager.instance.dragonInFocus = lookFollow.GetComponent<DragonNPCManager>();
+        ShowDragonName();
+
+        cam.Follow = lookFollow.transform;
+        cam.LookAt = lookFollow.transform;
+    }
+
+
+   
+
+
+    private void ShowDragonName()
+    {
+        dragonName.text = DragonDatabase.instance.getDragonByID(dragonsInScene[dragonIndex].GetComponent<DragonNPCManager>().dragonID).DragonName;
     }
 }

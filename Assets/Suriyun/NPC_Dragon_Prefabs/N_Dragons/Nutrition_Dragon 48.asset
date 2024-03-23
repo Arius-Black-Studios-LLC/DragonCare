@@ -16,4 +16,9 @@ MonoBehaviour:
   DragonName: Squidgy
   DragonObject: {fileID: 4046863638158121723, guid: 580b66d350087e140ba958d96e25010a,
     type: 3}
-  DragonCategory: {fileID: 11400000, guid: 9aafdae6e49679c479f7cacc653351d0, type: 2}
+  DragonCategory: 6
+  Hat_id: -1
+  Backpack_id: -1
+  pet_id: -1
+  holding_id: -1
+  Rideable_id: 0

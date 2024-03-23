@@ -16,4 +16,9 @@ MonoBehaviour:
   DragonName: Chunkster
   DragonObject: {fileID: 1178642871123031866, guid: a3ac4e91b8836a74aa7cf2e11c8222bf,
     type: 3}
-  DragonCategory: {fileID: 11400000, guid: 9aafdae6e49679c479f7cacc653351d0, type: 2}
+  DragonCategory: 6
+  Hat_id: -1
+  Backpack_id: -1
+  pet_id: -1
+  holding_id: -1
+  Rideable_id: 0

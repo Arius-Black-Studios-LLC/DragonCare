@@ -19,6 +19,17 @@ public class DressUpUIManager : MonoBehaviour
         SpawnButtonsOfAccesoryByType(AccesoryType.Pet);
     }
 
+    public void PopulateAllOwnedBackpacks()
+    {
+        DestoyAllButtons();
+        SpawnButtonsOfAccesoryByType(AccesoryType.Back);
+    }
+
+    public void PopulateAllOwnedHoldingItems()
+    {
+        DestoyAllButtons();
+        SpawnButtonsOfAccesoryByType(AccesoryType.Hold);
+    }
     private void SpawnButtonsOfAccesoryByType(AccesoryType accesoryType)
     {
         for (int i = 0; i < PlayerManager.instance.playerData.unlockedAccesoryIDs.Count; i++)

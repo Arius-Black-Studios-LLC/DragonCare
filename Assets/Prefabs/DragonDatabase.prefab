@@ -112,3 +112,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fa5c79b4b73eb5a489d379ef94512463, type: 2}
   accesories:
   - {fileID: 11400000, guid: ee171c70933b691479bbd1e8da095001, type: 2}
+  - {fileID: 11400000, guid: 5ba8afae1d128f749b038718d1ee8bdb, type: 2}
+  - {fileID: 11400000, guid: 4b4492495f5ee0948bd4e19181ff5d6d, type: 2}
+  - {fileID: 11400000, guid: 5a16bb547b7eb364993a83ea56678b7b, type: 2}
+  - {fileID: 11400000, guid: a47750df3b3c8ca45bba752079380f7a, type: 2}
