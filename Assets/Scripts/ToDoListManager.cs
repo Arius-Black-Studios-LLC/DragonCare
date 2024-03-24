@@ -9,7 +9,9 @@ public class ToDoListManager : MonoBehaviour
 {
     [Header("To Do List Item View")]
     public Transform ToDoListScrollRect;
+    public TMP_Dropdown categories;
     public GameObject ToDoListItemGO;
+
     public List<GameObject> buttonsShowing = new List<GameObject>();
 
     [Header("Add Item View")]
@@ -18,51 +20,26 @@ public class ToDoListManager : MonoBehaviour
     public TMP_Dropdown categoryDropdown;
     public TMP_Dropdown frequencyDropdown;
 
-
-
-
-    //to be called when the category buttons are pressed
-    #region SHOW TASKS
-    public void PopulateToDo_D()
+    void Start()
     {
-        PopulateToDo_Enum(TaskCategory.Downtime);
-    }
+        // Add listener to the dropdown
+        categories.onValueChanged.AddListener(delegate {
+            PopulateToDo_Enum(categories.value);
+        });
 
-    public void PopulateToDo_R()
-    {
-        PopulateToDo_Enum(TaskCategory.Routine);
+        // Initialize the to-do list with the default category
+        PopulateToDo_Enum(categories.value);
     }
 
 
-    public void PopulateToDo_A()
-    {
-        PopulateToDo_Enum(TaskCategory.Activity);
-    }
-
-    public void PopulateToDo_G()
-    {
-        PopulateToDo_Enum(TaskCategory.Growth);
-    }
-
-    public void PopulateToDo_O()
-    {
-        PopulateToDo_Enum(TaskCategory.Organize);
-    }
-
-    public void PopulateToDo_N()
-    {
-        PopulateToDo_Enum(TaskCategory.Nutrition);
-    }
-
-    public void PopulateToDo_S()
-    {
-        PopulateToDo_Enum(TaskCategory.Social);
-    }
 
     //helper functions
 
-    private void PopulateToDo_Enum(TaskCategory category)
+    public void PopulateToDo_Enum(int categoryIndex)
     {
+        // Convert the integer index to TaskCategory enum
+        TaskCategory category = (TaskCategory)categoryIndex;
+
         ClearToDoListButtons();
         foreach (ToDoListItem item in PlayerManager.instance.playerData.toDoListItems)
         {
@@ -134,7 +111,7 @@ public class ToDoListManager : MonoBehaviour
                 return 1; // Default to daily if an unsupported frequency is provided
         }
     }
-    #endregion
+
 
 
     #region CREATE NEW TASK

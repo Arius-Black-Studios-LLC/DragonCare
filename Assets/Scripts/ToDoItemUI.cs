@@ -12,9 +12,8 @@ public class ToDoItemUI : MonoBehaviour
 
     public void LogTaskAsComplete()
     {
-        // Find the taskItem in PlayerManager's list of task items
-        // and update its lastLogged date to today
-        UpdateLastLoggedDate();
+        // Set the taskItem's lastLogged date to the current date (today)
+        taskItem.lastLogged = DateTime.Now;
 
         // Grant the player points according to priority
         PlayerManager.instance.GrantPointsForCompleteingTask(taskItem);
@@ -23,6 +22,7 @@ public class ToDoItemUI : MonoBehaviour
         RemoveFromToDoList();
 
         // Destroy this button's GameObject
+        PlayerManager.instance.SaveTaskChanges();
         Destroy(gameObject);
     }
 
@@ -33,11 +33,7 @@ public class ToDoItemUI : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void UpdateLastLoggedDate()
-    {
-        // Set the taskItem's lastLogged date to the current date (today)
-        taskItem.lastLogged = DateTime.Now;
-    }
+
 
 
 

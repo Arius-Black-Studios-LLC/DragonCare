@@ -290,6 +290,11 @@ public class PlayerManager : MonoBehaviour
         playerData.toDoListItems.Remove(taskItem);
         SavePlayerData<List<ToDoListItem>>(playerData.toDoListItems, "ToDoListItems");
     }
+
+    public void SaveTaskChanges()
+    {
+        SavePlayerData(playerData.toDoListItems, "ToDoListItems");
+    }
     public void GrantPointsForCompleteingTask(ToDoListItem taskItem)
     {
         // You can implement your logic for granting points based on priority

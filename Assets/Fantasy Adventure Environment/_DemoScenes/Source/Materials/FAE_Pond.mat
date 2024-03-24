@@ -8,20 +8,18 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: FAE_Pond
-  m_Shader: {fileID: -6465566751694194690, guid: e02af2867afa32a46ae65b908b67dbed, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: e02af2867afa32a46ae65b908b67dbed,
+    type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _USEINTERSECTIONHIGHLIGHT_ON
-  - _WORLDSPACETILING_ON
-  m_LightmapFlags: 2
+  m_InvalidKeywords: []
+  m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
-  disabledShaderPasses:
-  - MOTIONVECTORS
+  disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -97,8 +95,6 @@ Material:
     m_Ints: []
     m_Floats:
     - Vector1_1942CF3A: 1
-    - Vector1_67814CC1: 0.1
-    - Vector1_7DFD32F9: 2
     - Vector1_BE75C478: 32
     - Vector1_E23F9E57: 0.5
     - Vector1_E796673B: 10
@@ -145,7 +141,6 @@ Material:
     - _Worldspacetiling: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_D0289068: {r: 0, g: 0.9394503, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FresnelColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -153,7 +148,7 @@ Material:
     - _WaterColor: {r: 0.4044118, g: 0.67961466, b: 1, a: 1}
     - _WaterShallowColor: {r: 0, g: 0.9394503, b: 1, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &7259720816462171285
+--- !u!114 &5589854719784189529
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -165,4 +160,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 8
+  version: 7

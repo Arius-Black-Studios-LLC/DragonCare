@@ -15,7 +15,7 @@ public class JournalUIManager : MonoBehaviour
     public TMP_InputField new_Title;
     public TMP_InputField new_Body;
 
-    [Header("New Entry")]
+    [Header("Old Entry")]
     public GameObject oldEntryGO;
     public TMP_Text old_Title;
     public TMP_Text old_Body;

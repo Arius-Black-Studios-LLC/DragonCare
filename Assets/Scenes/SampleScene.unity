@@ -617,6 +617,66 @@ PrefabInstance:
       propertyPath: m_Name
       value: Log In Screen
       objectReference: {fileID: 0}
+    - target: {fileID: 4808279280357895911, guid: 34b0e8b38cf411746b37a37a8330f38e,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4808279280357895911, guid: 34b0e8b38cf411746b37a37a8330f38e,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4808279280357895911, guid: 34b0e8b38cf411746b37a37a8330f38e,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4808279280357895911, guid: 34b0e8b38cf411746b37a37a8330f38e,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4808279280357895911, guid: 34b0e8b38cf411746b37a37a8330f38e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4808279280357895911, guid: 34b0e8b38cf411746b37a37a8330f38e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933645748876877378, guid: 34b0e8b38cf411746b37a37a8330f38e,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933645748876877378, guid: 34b0e8b38cf411746b37a37a8330f38e,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933645748876877378, guid: 34b0e8b38cf411746b37a37a8330f38e,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933645748876877378, guid: 34b0e8b38cf411746b37a37a8330f38e,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933645748876877378, guid: 34b0e8b38cf411746b37a37a8330f38e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933645748876877378, guid: 34b0e8b38cf411746b37a37a8330f38e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8490603805088688242, guid: 34b0e8b38cf411746b37a37a8330f38e,
         type: 3}
       propertyPath: m_Pivot.x
