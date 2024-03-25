@@ -17,14 +17,10 @@ public class PlayerData
     public List<ToDoListItem> toDoListItems = new List<ToDoListItem>();
     public List<journalEntry> journal = new List<journalEntry>();
     public int productivityPoints = 0;
-    public int EggPricePerCat = 5;
-    public int D_tasks = 0;
-    public int R_tasks = 0;
-    public int A_tasks = 0;
-    public int G_tasks = 0;
-    public int O_tasks = 0;
-    public int N_tasks = 0;
-    public int S_tasks = 0;
+
+    public int credits = 0;
+    public int EggPrice = 100;
+    public int AccesoryPrice = 50;
     public DateTime LastJournalEntry = DateTime.MinValue;
     public int journalingStreak;
 
@@ -56,6 +52,7 @@ public class PlayerManager : MonoBehaviour
 
     public DragonNPCManager dragonInFocus;
     public ShopUIManger shopUIManger;
+    public int productivityPoints_multiplyer = 1;
 
 
 
@@ -125,70 +122,22 @@ public class PlayerManager : MonoBehaviour
 
         try
         {
-
-            playerData.D_tasks = await LoadPlayerData<int>("D_tasks");
+            playerData.credits = await LoadPlayerData<int>("Credits");
         }
         catch
         {
-            SavePlayerData(playerData.D_tasks, "D_Tasks");
-        }
-        try
-        {
-
-            playerData.R_tasks = await LoadPlayerData<int>("R_tasks");
-        }
-        catch
-        {
-            SavePlayerData(playerData.R_tasks, "R_Tasks");
+            SavePlayerData(playerData.credits, "Credits");
         }
 
         try
         {
-            playerData.A_tasks = await LoadPlayerData<int>("A_tasks");
+            playerData.AccesoryPrice = await LoadPlayerData<int>("AccesoryPrice");
         }
         catch
         {
-            SavePlayerData(playerData.A_tasks, "A_Tasks");
-        }
-        try
-        {
-
-            playerData.G_tasks = await LoadPlayerData<int>("G_tasks");
-        }
-        catch
-        {
-            SavePlayerData(playerData.G_tasks, "G_Tasks");
-        }
-        try
-        {
-
-
-            playerData.O_tasks = await LoadPlayerData<int>("O_tasks");
-
-        }
-        catch
-        {
-            SavePlayerData(playerData.O_tasks, "O_Tasks");
+            SavePlayerData(playerData.AccesoryPrice, "AccesoryPrice");
         }
 
-        try
-        {
-            playerData.N_tasks = await LoadPlayerData<int>("N_tasks");
-
-        }
-        catch
-        {
-            SavePlayerData(playerData.N_tasks, "N_Tasks");
-        }
-        try
-        {
-
-            playerData.S_tasks = await LoadPlayerData<int>("S_tasks");
-        }
-        catch
-        {
-            SavePlayerData(playerData.S_tasks, "S_Tasks");
-        }
 
 
         try
@@ -217,11 +166,11 @@ public class PlayerManager : MonoBehaviour
 
         try
         {
-            playerData.EggPricePerCat = await LoadPlayerData<int>("EggPricePerCat");
+            playerData.EggPrice = await LoadPlayerData<int>("EggPrice");
         }
         catch
         {
-            SavePlayerData(playerData.EggPricePerCat, "eggPricePerCat");
+            SavePlayerData(playerData.EggPrice, "EggPrice");
         }
     }
 
@@ -247,14 +196,9 @@ public class PlayerManager : MonoBehaviour
     public void SaveCurencies()
     {
         SavePlayerData(playerData.productivityPoints, "productivityPoints");
-        SavePlayerData(playerData.D_tasks, "D_tasks");
-        SavePlayerData(playerData.R_tasks, "R_tasks");
-        SavePlayerData(playerData.A_tasks, "A_tasks");
-        SavePlayerData(playerData.G_tasks, "G_tasks");
-        SavePlayerData(playerData.O_tasks, "O_tasks");
-        SavePlayerData(playerData.N_tasks, "N_tasks");
-        SavePlayerData(playerData.S_tasks, "S_tasks");
-        SavePlayerData(playerData.EggPricePerCat, "eggPricePerCat");
+        SavePlayerData(playerData.credits, "Credits");
+        SavePlayerData(playerData.EggPrice, "EggPrice");
+        SavePlayerData(playerData.AccesoryPrice, "AccesoryPrice");
 
 
     }
@@ -300,39 +244,8 @@ public class PlayerManager : MonoBehaviour
         // You can implement your logic for granting points based on priority
         // For example, you can use a scoring system or other mechanisms
         Debug.Log("Priority: " + taskItem.Priority);
-        PlayerManager.instance.playerData.productivityPoints += taskItem.Priority;
-        switch (taskItem.taskCategory)
-        {
-            case TaskCategory.Downtime:
-                PlayerManager.instance.playerData.D_tasks++;
-                SavePlayerData(playerData.D_tasks, "D_tasks");
-                break;
-            case TaskCategory.Routine:
-                PlayerManager.instance.playerData.R_tasks++;
-                SavePlayerData(playerData.R_tasks, "R_tasks");
-                break;
-            case TaskCategory.Activity:
-                PlayerManager.instance.playerData.A_tasks++;
-                SavePlayerData(playerData.A_tasks, "A_tasks");
-                break;
-            case TaskCategory.Growth:
-                PlayerManager.instance.playerData.G_tasks++;
-                SavePlayerData(playerData.G_tasks, "G_tasks");
-                break;
-            case TaskCategory.Organize:
-                PlayerManager.instance.playerData.O_tasks++;
-                SavePlayerData(playerData.O_tasks, "O_tasks");
-                break;
-            case TaskCategory.Nutrition:
-                PlayerManager.instance.playerData.N_tasks++;
-                SavePlayerData(playerData.N_tasks, "N_tasks");
-                break;
-            case TaskCategory.Social:
-                PlayerManager.instance.playerData.S_tasks++;
-                SavePlayerData(playerData.S_tasks, "S_tasks");
-                break;
-
-        }
+        PlayerManager.instance.playerData.productivityPoints += (taskItem.Priority *(productivityPoints_multiplyer +playerData.unlockedDragons.Count));
+        
         SavePlayerData(playerData.productivityPoints, "productivityPoints");
     }
 
@@ -340,7 +253,7 @@ public class PlayerManager : MonoBehaviour
     //Currencies
     public void IncreaseEggPricePerCat()
     {
-        playerData.EggPricePerCat += 2;
+        playerData.EggPrice *= 2;
     }
 
 
@@ -349,86 +262,60 @@ public class PlayerManager : MonoBehaviour
 
 
    
-    public void AddDragon(int dragonID, DRAGONCategory category , bool freeEgg = false)
+    public void AddRandomDragon(bool freeEgg = false)
     {
-        bool isDragonUnlocked = false;
-        foreach (DragonSaveSettings dragon in playerData.unlockedDragons)
-        {
-            if (dragon.dragon_id == dragonID)
-            {
-                isDragonUnlocked = true;
-                break;
-            }
-        }
+        int dragonID =DragonDatabase.instance.dragons[UnityEngine.Random.Range(0, DragonDatabase.instance.dragons.Length)].DragonID;
 
-        // If the dragonID is not found in unlocked dragons, add it to the list
-        if (!isDragonUnlocked)
-        {
-            DragonSaveSettings newDragon = new DragonSaveSettings { dragon_id = dragonID };
+        DragonSaveSettings newDragon = new DragonSaveSettings { dragon_id = dragonID };
             playerData.unlockedDragons.Add(newDragon);
 
             NPCDragonSpawner.instance.SpawnDragonWithBrain(newDragon);
             SavePlayerData(playerData.unlockedDragons, "unlockedDragons");
 
+
+            if(shopUIManger == null)
+            {
+                shopUIManger =FindObjectOfType<ShopUIManger>();
+            }
+            shopUIManger.ShowConfirmationWindow("Congrat's, you")
             //PAY FOR EGG
             if (!freeEgg)
             {
-                playerData.productivityPoints -= 100;
+                playerData.productivityPoints -= playerData.EggPrice;
 
-                //TODO!!
-                switch (category)
-                {
-                    case DRAGONCategory.D:
-                        playerData.D_tasks -= PlayerManager.instance.playerData.EggPricePerCat;
-                        break;
-                    case DRAGONCategory.R:
-                        playerData.R_tasks -= PlayerManager.instance.playerData.EggPricePerCat;
-                        break;
-                    case DRAGONCategory.A:
-                        playerData.A_tasks -= PlayerManager.instance.playerData.EggPricePerCat;
-                        break;
-                    case DRAGONCategory.G:
-                        playerData.G_tasks -= PlayerManager.instance.playerData.EggPricePerCat;
-                        break;
-                    case DRAGONCategory.O:
-                        playerData.O_tasks -= PlayerManager.instance.playerData.EggPricePerCat;
-                        break;
-                    case DRAGONCategory.N:
-                        playerData.N_tasks -= PlayerManager.instance.playerData.EggPricePerCat;
-                        break;
-                    case DRAGONCategory.S:
-                        playerData.S_tasks -= PlayerManager.instance.playerData.EggPricePerCat;
-                        break;
-                    default:
-                        Debug.LogError("Unknown category!");
-                        break;
-                }
+               
 
                 instance.IncreaseEggPricePerCat();
                 instance.SaveCurencies();
 
             }
 
-        }
-        else
-        {
-            //grant gems or something, accessories?
-            AddAccessories();
-        }
+
     }
-    public void AddAccessories()
+
+    //called on special events that grant specific dragon for free or what ever
+    public void AddEventDragon(int id)
+    {
+        DragonSaveSettings newDragon = new DragonSaveSettings { dragon_id = id };
+        playerData.unlockedDragons.Add(newDragon);
+
+        NPCDragonSpawner.instance.SpawnDragonWithBrain(newDragon);
+        SavePlayerData(playerData.unlockedDragons, "unlockedDragons");
+    }
+
+
+    public void AddAccessories(bool freeAccesory=false)
     {
        DragonAccesory newAccesory = DragonDatabase.instance.accesories[UnityEngine.Random.Range(0,DragonDatabase.instance.accesories.Length)];
-        if (playerData.unlockedAccesoryIDs.Contains(newAccesory.accesory_id))
+        playerData.unlockedAccesoryIDs.Add(newAccesory.accesory_id);
+
+        if (!freeAccesory)
         {
-            playerData.productivityPoints += 100;
-            SavePlayerData(playerData.productivityPoints, "productivityPoints");
+            playerData.productivityPoints -= playerData.AccesoryPrice;
         }
-        else
-        {
-            playerData.unlockedAccesoryIDs.Add(newAccesory.accesory_id);
-            SavePlayerData(playerData.unlockedAccesoryIDs, "unlockedAccesoryIds");
-        }
+        SavePlayerData(playerData.unlockedAccesoryIDs, "unlockedAccesoryIds");
+        SavePlayerData(playerData.AccesoryPrice, "AccesoryPrice");
+
     }
    
     public void AddNewJournalEntry(journalEntry newReading)

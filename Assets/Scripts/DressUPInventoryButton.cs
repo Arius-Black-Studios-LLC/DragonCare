@@ -18,6 +18,10 @@ public class DressUPInventoryButton : MonoBehaviour
         {
             ButtonIcon.sprite = accesory.icon;
         }
+        else
+        {
+            ButtonIcon.gameObject.SetActive(false);
+        }
 
 
     }

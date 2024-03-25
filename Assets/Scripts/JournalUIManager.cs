@@ -1,15 +1,17 @@
-using Newtonsoft.Json;
+
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using TMPro;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
+
+
+
 
 public class JournalUIManager : MonoBehaviour
 {
 
+
+    
     [Header("New Entry")]
     public GameObject newEntryGO;
     public TMP_InputField new_Title;

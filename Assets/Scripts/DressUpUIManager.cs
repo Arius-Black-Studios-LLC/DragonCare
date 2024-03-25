@@ -1,37 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class DressUpUIManager : MonoBehaviour
 {
     [SerializeField] private Transform scrollView;
     [SerializeField] private DressUPInventoryButton buttonPrefab;
+    public TMP_Dropdown OutfitCategories;
     private List<DressUPInventoryButton> buttonList = new List<DressUPInventoryButton>();
-    public void PopulateAllOwnedHats()
+
+    void Start()
     {
-        DestoyAllButtons();
-        SpawnButtonsOfAccesoryByType(AccesoryType.Hat);
+        // Add listener to the dropdown
+        OutfitCategories.onValueChanged.AddListener(delegate {
+            SpawnButtonsOfAccesoryByType(OutfitCategories.value);
+        });
+
+        // Initialize the Inventory Images list with the default category
+        SpawnButtonsOfAccesoryByType(OutfitCategories.value);
     }
 
-    public void PopulateAllOwnedPets()
+    private void SpawnButtonsOfAccesoryByType(int accesoryTypeIndex)
     {
         DestoyAllButtons();
-        SpawnButtonsOfAccesoryByType(AccesoryType.Pet);
-    }
-
-    public void PopulateAllOwnedBackpacks()
-    {
-        DestoyAllButtons();
-        SpawnButtonsOfAccesoryByType(AccesoryType.Back);
-    }
-
-    public void PopulateAllOwnedHoldingItems()
-    {
-        DestoyAllButtons();
-        SpawnButtonsOfAccesoryByType(AccesoryType.Hold);
-    }
-    private void SpawnButtonsOfAccesoryByType(AccesoryType accesoryType)
-    {
+        AccesoryType accesoryType = (AccesoryType)accesoryTypeIndex;
         for (int i = 0; i < PlayerManager.instance.playerData.unlockedAccesoryIDs.Count; i++)
         {
             DragonAccesory accesory = DragonDatabase.instance.getAccesoryByID(PlayerManager.instance.playerData.unlockedAccesoryIDs[i]);

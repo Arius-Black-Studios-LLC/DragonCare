@@ -12,7 +12,7 @@ public class DragonNPCScriptable : ScriptableObject
     public int DragonID;
     public string DragonName;
     public GameObject DragonObject;
-    public DRAGONCategory DragonCategory;
+
 
     public int Hat_id = -1;
     public int Backpack_id = -1;

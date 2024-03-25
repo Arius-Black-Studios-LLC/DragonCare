@@ -80,8 +80,7 @@ public class NPCDragonSpawner : MonoBehaviour
     //Called By The New Player Dragon Granting UI
     public void GiveDragonToPlayer()
     {
-        int newDragon = DragonDatabase.instance.dragons[UnityEngine.Random.Range(0, DragonDatabase.instance.dragons.Length)].DragonID;
-        PlayerManager.instance.AddDragon(newDragon,DRAGONCategory.Any,true);
+        PlayerManager.instance.AddRandomDragon(true);
         firstDragonUI.SetActive(false);
     }
     #endregion
@@ -107,6 +106,7 @@ public class NPCDragonSpawner : MonoBehaviour
             DManager.animManager = _SpawnedBrain.GetComponentInChildren<DragonAnimManager>();
             DManager.wardorbManager = _SpawnedBrain.GetComponentInChildren<DragonWardorbManager>();
 
+
             DragonAccesory temp_hat = DragonDatabase.instance.getAccesoryByID(dragon.Hat_id);
             if (temp_hat != null)
             {
@@ -117,6 +117,10 @@ public class NPCDragonSpawner : MonoBehaviour
             {
                 DManager.wardorbManager.EquipPet(temp_pet.accesory_GO);
             }
+
+            PlayerManager.instance.dragonInFocus = DManager;
+            cam.Follow = DManager.transform;
+            cam.LookAt = DManager.transform;
 
 
 
